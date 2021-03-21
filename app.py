@@ -4,7 +4,9 @@ import os
 app = Flask(__name__)
 
 
-# your code here
+@app.route('/')
+def home():
+    return "hello world"
 
 
 # "magic code" -- boilerplate
