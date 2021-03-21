@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "hello world"
+    return render_template('home.template.html')
 
 
 # "magic code" -- boilerplate
