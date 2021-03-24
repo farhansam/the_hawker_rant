@@ -15,22 +15,47 @@ Create Stall Data
             </div>
         </div>
         <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Stall Grading</label>
+            <div class="col-sm-10">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected></option>
+                    <option value="grade-a">A</option>
+                    <option value="grade-b">B</option>
+                    <option value="grade-c">C</option>
+                    <option value="grade-d">D</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
             <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputAddress">
             </div>
         </div>
         <div class="row mb-3">
-            <label for="inputArea" class="col-sm-2 col-form-label">Area</label>
+            <label class="col-sm-2 col-form-label">Area</label>
             <div class="col-sm-10">
                 <select class="form-select" aria-label="Default select example">
-                    <option selected>Select Area</option>
+                    <option selected></option>
                     <option value="north">North</option>
                     <option value="south">South</option>
                     <option value="east">East</option>
                     <option value="west">West</option>
                     <option value="central">Central</option>
                 </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputEstate" class="col-sm-2 col-form-label">Estate</label>
+            <div class="col-sm-10">
+                <input class="form-control" list="estateOptions" id="inputEstate" placeholder="Type to search...">
+                    <datalist id="estateOptions">
+                        <option value="San Francisco">
+                        <option value="New York">
+                        <option value="Seattle">
+                        <option value="Los Angeles">
+                        <option value="Chicago">
+                    </datalist>
             </div>
         </div>
 
