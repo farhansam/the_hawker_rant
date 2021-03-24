@@ -21,6 +21,10 @@ def home():
 def show_results():
     return render_template('results.template.html')
 
+@app.route('/create_stall')
+def create_stall_database():
+    return render_template('create_stall.template.html')
+
 
 # "magic code" -- boilerplate
 if __name__ == '__main__':
