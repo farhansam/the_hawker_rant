@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import pymongo
 from dotenv import load_dotenv
@@ -50,7 +50,7 @@ def process_create_stall():
         "specialty_dish_2": specialty_dish_2,
         "specialty_dish_3": specialty_dish_3
     })
-    flash("New stall information has been created successfully!")
+    
     return redirect(url_for('show_results'))
 
 
