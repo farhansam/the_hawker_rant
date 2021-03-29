@@ -6,32 +6,32 @@ The Hawker-rant
 
 {% block content %}
 
+<img src="/static/images/home_banner.png" class="img-fluid" alt="lau pa sat">
 
-
-    <img src="/static/images/home_banner.png" class="img-fluid" alt="lau pa sat">
-    
-    <div class="container overlay">
-    <form method="GET">
-        <label class="col-form-label">Search for a hawker stall</label>
-        <div class="row mb-3">
-            <div class="col-sm-10">
-                <input type="text" class="form-control form-control-lg" name="stall_name_search">
+<div class="container">
+    <div class="container add-space">
+        <form method="GET">
+            <label class="col-form-label">
+                <h1>Search for a hawker stall</h1>
+            </label>
+            <div class="row">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control form-control-lg" name="stall_name_search">
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" value="Search" class="btn btn-primary btn-lg" />
+                </div>
             </div>
-            <div class="col-sm-2">
-                <input type="submit" value="Search" class="btn btn-primary btn-lg" />
-            </div>
-        </div>
+        </form>
+    </div>
 
-    </form>
-
-    <h1>or</h1>
     <div class="container">
         <div class="row">
-            <div class="col-10">
-                <h1>Filter by search preference</h1>
+            <div class="col-4">
+                <h4 class="text-left">Or filter by search preference</h4>
             </div>
-            <div class="col-2">
-                <a href="{{url_for('show_search_results')}}"><button class="btn btn-primary mb-3">Go</button></a>
+            <div class="col-8 d-flex align-items-center">
+                <a href="{{url_for('show_search_results')}}"><button class="btn btn-primary text-left">Go</button></a>
             </div>
         </div>
     </div>
@@ -40,4 +40,5 @@ The Hawker-rant
 
 
 
-{% endblock %}
+
+    {% endblock %}

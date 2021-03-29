@@ -1,7 +1,3 @@
-.overlay {
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    top: 30%;
-    z-index: 1;
+.add-space{
+    margin-bottom: 10rem;
 }
