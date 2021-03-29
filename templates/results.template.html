@@ -119,33 +119,27 @@ The Hawker Rant
                 </div>
             </div>
             <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">No. of Reviews</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" name="reviews">
+                <label class="col-sm-2 col-form-label">No. of Reviews</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="reviews">
+                </div>
             </div>
-        </div>
 
             <input type="submit" class="btn btn-primary" value="Filter" />
         </form>
     </div>
 
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Area</th>
-                <th>Grading</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        {%for stall in all_stalls %}
-        <tr>
-            <td>{{stall.area}}</td>
-            <td>{{stall.grading}}</td>
-            <td>{{stall.address}}</td>
-        </tr>
-        {%endfor%}
-    </table>
+    <!--Results display-->
+    {%for stall in all_stalls %}
+    <div class="card" style="width: 18rem;">
+        <!--<img src="..." class="card-img-top" alt="...">-->
+        <div class="card-body">
+            <h5 class="card-title">{{stall.stall_name}}</h5>
+            <p class="card-text">{{stall.area}}, {{stall.grading}}, {{stall.address}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    {%endfor%}
 
 </div>
 
