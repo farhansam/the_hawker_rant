@@ -15,27 +15,13 @@ DB_NAME = 'thr_db'
 client = pymongo.MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
+# Home page
 @app.route('/')
 def home():
     return render_template('home.template.html')
 
-@app.route('/stalls')
-def show_all_stalls():
-    stall_name_search = request.args.get('stall_name_search')
 
-    criteria = {}
-
-    if stall_name_search:
-        criteria['stall_name'] = stall_name_search
-
-    all_stalls = db.foodStalls.find(criteria, {
-        'stall_name': 1,
-        'area': 1,
-        'grading': 1,
-        'address': 1
-    })
-    return render_template('results.template.html', all_stalls=all_stalls)
-
+# Create info page
 @app.route('/stall/create')
 def show_create_stall():
     return render_template('create_stall.template.html')
@@ -66,6 +52,24 @@ def process_create_stall():
     
     return redirect(url_for('show_create_stall'))
 
+
+# Results page
+@app.route('/results')
+def show_search_results():
+    stall_name_search = request.args.get('stall_name_search')
+
+    criteria = {}
+
+    if stall_name_search:
+        criteria['stall_name'] = stall_name_search
+
+    all_stalls = db.foodStalls.find(criteria, {
+        'stall_name': 1,
+        'area': 1,
+        'grading': 1,
+        'address': 1
+    })
+    return render_template('results.template.html', all_stalls=all_stalls)
 
 
 if __name__ == '__main__':
