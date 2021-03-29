@@ -19,9 +19,22 @@ db = client[DB_NAME]
 def home():
     return render_template('home.template.html')
 
-@app.route('/results')
-def show_results():
-    return render_template('results.template.html')
+@app.route('/stalls')
+def show_all_stalls():
+    stall_name_search = request.args.get('stall_name_search')
+
+    criteria = {}
+
+    if stall_name_search:
+        criteria['stall_name'] = stall_name_search
+
+    all_stalls = db.foodStalls.find(criteria, {
+        'stall_name': 1,
+        'area': 1,
+        'grading': 1,
+        'address': 1
+    })
+    return render_template('results.template.html', all_stalls=all_stalls)
 
 @app.route('/stall/create')
 def show_create_stall():
@@ -51,7 +64,7 @@ def process_create_stall():
         "specialty_dish_3": specialty_dish_3
     })
     
-    return redirect(url_for('show_results'))
+    return redirect(url_for('show_create_stall'))
 
 
 
