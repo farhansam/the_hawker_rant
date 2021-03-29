@@ -68,8 +68,6 @@ def process_create_stall():
 
 
 
-
-# "magic code" -- boilerplate
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
