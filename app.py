@@ -54,7 +54,7 @@ def process_create_stall():
 
 
 # Results page
-@app.route('/results')
+@app.route('/stall/results')
 def show_search_results():
     stall_name_search = request.args.get('stall_name_search')
 
@@ -70,6 +70,11 @@ def show_search_results():
         'address': 1
     })
     return render_template('results.template.html', all_stalls=all_stalls)
+
+# Display page
+@app.route('/stall/display')
+def show_stall_info():
+    return render_template('display.template.html')
 
 
 if __name__ == '__main__':
