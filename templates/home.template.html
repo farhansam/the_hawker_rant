@@ -1,15 +1,18 @@
 {% extends 'base.template.html' %}
 
 {%block title %}
-The Hawker Rant
+The Hawker-rant
 {%endblock%}
 
 {% block content %}
-<img src="/static/images/home_banner.jpg" class="img-fluid" alt="home banner">
 
-<div class="container">
+
+
+    <img src="/static/images/home_banner.png" class="img-fluid" alt="lau pa sat">
+    
+    <div class="container overlay">
     <form method="GET">
-        <label class="col-form-label">Stall Name Search</label>
+        <label class="col-form-label">Search for a hawker stall</label>
         <div class="row mb-3">
             <div class="col-sm-10">
                 <input type="text" class="form-control form-control-lg" name="stall_name_search">
@@ -35,6 +38,6 @@ The Hawker Rant
 
 
 
-</div>
+
 
 {% endblock %}
