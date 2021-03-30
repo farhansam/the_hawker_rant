@@ -24,10 +24,10 @@ The Hawker Rant
     <div class="row">
         <div class="col-sm-3">
             <!--Search by filter-->
-            <form method="GET">
+            <form method="GET" class="border border-1 rounded-3 card-body">
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Area</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-4 col-form-label">Area</label>
+                    <div class="col-lg-8">
                         <select class="form-select" aria-label="Default select example" name="area">
                             <option selected></option>
                             <option value="north">North</option>
@@ -39,8 +39,8 @@ The Hawker Rant
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Estate</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-4 col-form-label">Estate</label>
+                    <div class="col-lg-8">
                         <input class="form-control" list="estateOptions" name="estate">
                         <datalist id="estateOptions">
                             <option value="Aljunied">
@@ -80,8 +80,8 @@ The Hawker Rant
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Cuisine</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-4 col-form-label">Cuisine</label>
+                    <div class="col-lg-8">
                         <select class="form-select" aria-label="Default select example" name="cuisine">
                             <option selected></option>
                             <option value="chinese">Chinese</option>
@@ -95,8 +95,8 @@ The Hawker Rant
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Grading</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-4 col-form-label">Grading</label>
+                    <div class="col-lg-8">
                         <select class="form-select" aria-label="Default select example" name="grading">
                             <option selected></option>
                             <option value="grade-a">A</option>
@@ -107,8 +107,8 @@ The Hawker Rant
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Ratings</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-4 col-form-label">Ratings</label>
+                    <div class="col-lg-8">
                         <select class="form-select" aria-label="Default select example" name="rating">
                             <option selected></option>
                             <option value="1-star">1 star</option>
@@ -120,8 +120,8 @@ The Hawker Rant
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">No. of Reviews</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-4 col-form-label">No. of Reviews</label>
+                    <div class="col-lg-8">
                         <input type="number" class="form-control" name="reviews">
                     </div>
                 </div>
@@ -132,10 +132,10 @@ The Hawker Rant
         <div class="col-sm-9">
             <!--Results display-->
             {%for stall in all_stalls %}
-            <div class="card mb-3" style="max-width: 540px;">
+            <div class="card mb-3" style="max-width: auto;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="/images/home_banner.png" alt="">
+                        <img src="/static/images/home_banner.png" class="img-fluid" alt="">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -149,21 +149,10 @@ The Hawker Rant
             </div>
             {%endfor%}
 
-
-
-            
-            <!--<div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{stall.stall_name}}</h5>
-                    <p class="card-text">{{stall.area}}, {{stall.grading}}, {{stall.address}}</p>
-                    <a href="#" class="btn btn-primary">View</a>
-                </div>
-            </div>
             
         </div>
     </div>
-</div>-->
+</div>
 
 
 
