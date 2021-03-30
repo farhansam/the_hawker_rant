@@ -51,15 +51,15 @@ def process_create_stall():
     specialty_dish_3 = request.form.get('specialty_dish_3')
 
     db.foodStalls.insert_one({
-        "stall_name": stall_name,
-        "grading": grading,
-        "address": address,
-        "area": area,
-        "estate": estate,
-        "cuisine": cuisine,
-        "specialty_dish_1": specialty_dish_1,
-        "specialty_dish_2": specialty_dish_2,
-        "specialty_dish_3": specialty_dish_3
+        "stall_name": stall_name.lower(),
+        "grading": grading.lower(),
+        "address": address.lower(),
+        "area": area.lower(),
+        "estate": estate.lower(),
+        "cuisine": cuisine.lower(),
+        "specialty_dish_1": specialty_dish_1.lower(),
+        "specialty_dish_2": specialty_dish_2.lower(),
+        "specialty_dish_3": specialty_dish_3.lower()
     })
 
     return redirect(url_for('show_create_stall'))
@@ -79,12 +79,16 @@ def process_create_stall():
 def show_search_results():
     stall_name_search = request.args.get('stall_name_search')
 
-    criteria = {}
+    #criteria = {}
 
-    if stall_name_search:
-        criteria['stall_name'] = stall_name_search
+    #if stall_name_search:
+        #criteria['stall_name'] = stall_name_search
 
-    all_stalls = db.foodStalls.find(criteria, {
+    all_stalls = db.foodStalls.find({
+        'stall_name': {
+            '$regex': stall_name_search, '$options': 'i'
+        }
+    }, {
         'stall_name': 1,
         'area': 1,
         'grading': 1,
