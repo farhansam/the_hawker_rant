@@ -5,25 +5,20 @@ The Hawker Rant
 {%endblock%}
 
 {% block content %}
-<h1>This is the results page</h1>
 
 
-<!--Search by name-->
-<form method="GET">
-    <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Stall Name Search</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="stall_name_search">
+<div class="row">
+    <div class="col-sm-3">
+        <!--Search by name-->
+        <div class="container-fluid mb-3">
+            <form method="GET" class="border border-1 rounded-3 card-body">
+                <label class="col-form-label">Search for a stall</label>
+                <input type="text" class="form-control" name="stall_name_search">
+                <input type="submit" value="Search" class="btn btn-primary mt-3" />
+            </form>
         </div>
-    </div>
-    <input type="submit" value="Search" class="btn btn-primary mt-3" />
-</form>
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3">
-            <!--Search by filter-->
+        <!--Search by filter-->
+        <div class="container-fluid">
             <form method="GET" class="border border-1 rounded-3 card-body">
                 <div class="row mb-3">
                     <label class="col-lg-4 col-form-label">Area</label>
@@ -129,30 +124,31 @@ The Hawker Rant
                 <input type="submit" class="btn btn-primary" value="Filter" />
             </form>
         </div>
-        <div class="col-sm-9">
-            <!--Results display-->
-            {%for stall in all_stalls %}
-            <div class="card mb-3" style="max-width: auto;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="/static/images/home_banner.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{stall.stall_name}}</h5>
-                            <p class="card-text">{{stall.area}}, {{stall.grading}}, {{stall.address}}</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="#" class="btn btn-primary">View</a>
-                        </div>
+    </div>
+    <div class="col-sm-9">
+        <!--Results display-->
+        {%for stall in all_stalls %}
+        <div class="card mb-3" style="max-width: auto;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="/static/images/home_banner.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{stall.stall_name}}</h5>
+                        <p class="card-text">{{stall.area}}, {{stall.grading}}, {{stall.address}}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
-            {%endfor%}
-
-            
         </div>
+        {%endfor%}
+
+
     </div>
 </div>
+
 
 
 
