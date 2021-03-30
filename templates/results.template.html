@@ -8,140 +8,168 @@ The Hawker Rant
 <h1>This is the results page</h1>
 
 
-<div class="container">
-
-    <!--Search by name-->
-    <form method="GET">
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Stall Name Search</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="stall_name_search">
-            </div>
-        </div>
-        <input type="submit" value="Search" class="btn btn-primary mt-3" />
-    </form>
-
-    <!--Search by filter-->
-    <div class="container">
-        <form method="GET">
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Area</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="area">
-                        <option selected></option>
-                        <option value="north">North</option>
-                        <option value="south">South</option>
-                        <option value="east">East</option>
-                        <option value="west">West</option>
-                        <option value="central">Central</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Estate</label>
-                <div class="col-sm-10">
-                    <input class="form-control" list="estateOptions" name="estate">
-                    <datalist id="estateOptions">
-                        <option value="Aljunied">
-                        <option value="Ang Mo Kio">
-                        <option value="Bedok">
-                        <option value="Bishan">
-                        <option value="Bukit Batok">
-                        <option value="Bukit Merah">
-                        <option value="Bukit Panjang">
-                        <option value="Bukit Timah">
-                        <option value="Central Area">
-                        <option value="Choa Chu Kang">
-                        <option value="Clementi">
-                        <option value="Eunos">
-                        <option value="Geylang">
-                        <option value="Hougang">
-                        <option value="Jurong East">
-                        <option value="Jurong West">
-                        <option value="Kallang/Whampoa">
-                        <option value="Kembangan">
-                        <option value="Lim Chu Kang">
-                        <option value="Marine Parade">
-                        <option value="Pasir Ris">
-                        <option value="Punggol">
-                        <option value="Queenstown">
-                        <option value="Sembawang">
-                        <option value="Sengkang">
-                        <option value="Serangoon">
-                        <option value="Simei">
-                        <option value="Tampines">
-                        <option value="Toa Payoh">
-                        <option value="Ubi">
-                        <option value="Woodlands">
-                        <option value="Yio Chu Kang">
-                        <option value="Yishun">
-                    </datalist>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Cuisine</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="cuisine">
-                        <option selected></option>
-                        <option value="chinese">Chinese</option>
-                        <option value="malay">Malay</option>
-                        <option value="indian">Indian</option>
-                        <option value="western">Western</option>
-                        <option value="international">International</option>
-                        <option value="beverages">Beverages</option>
-                        <option value="dessert">Dessert</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Grading</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="grading">
-                        <option selected></option>
-                        <option value="grade-a">A</option>
-                        <option value="grade-b">B</option>
-                        <option value="grade-c">C</option>
-                        <option value="grade-d">D</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">Ratings</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="rating">
-                        <option selected></option>
-                        <option value="1-star">1 star</option>
-                        <option value="2-star">2 star</option>
-                        <option value="3-star">3 star</option>
-                        <option value="4-star">4 star</option>
-                        <option value="5-star">5 star</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">No. of Reviews</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="reviews">
-                </div>
-            </div>
-
-            <input type="submit" class="btn btn-primary" value="Filter" />
-        </form>
-    </div>
-
-    <!--Results display-->
-    {%for stall in all_stalls %}
-    <div class="card" style="width: 18rem;">
-        <!--<img src="..." class="card-img-top" alt="...">-->
-        <div class="card-body">
-            <h5 class="card-title">{{stall.stall_name}}</h5>
-            <p class="card-text">{{stall.area}}, {{stall.grading}}, {{stall.address}}</p>
-            <a href="#" class="btn btn-primary">View</a>
+<!--Search by name-->
+<form method="GET">
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Stall Name Search</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="stall_name_search">
         </div>
     </div>
-    {%endfor%}
+    <input type="submit" value="Search" class="btn btn-primary mt-3" />
+</form>
 
-</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <!--Search by filter-->
+            <form method="GET">
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Area</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="area">
+                            <option selected></option>
+                            <option value="north">North</option>
+                            <option value="south">South</option>
+                            <option value="east">East</option>
+                            <option value="west">West</option>
+                            <option value="central">Central</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Estate</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" list="estateOptions" name="estate">
+                        <datalist id="estateOptions">
+                            <option value="Aljunied">
+                            <option value="Ang Mo Kio">
+                            <option value="Bedok">
+                            <option value="Bishan">
+                            <option value="Bukit Batok">
+                            <option value="Bukit Merah">
+                            <option value="Bukit Panjang">
+                            <option value="Bukit Timah">
+                            <option value="Central Area">
+                            <option value="Choa Chu Kang">
+                            <option value="Clementi">
+                            <option value="Eunos">
+                            <option value="Geylang">
+                            <option value="Hougang">
+                            <option value="Jurong East">
+                            <option value="Jurong West">
+                            <option value="Kallang/Whampoa">
+                            <option value="Kembangan">
+                            <option value="Lim Chu Kang">
+                            <option value="Marine Parade">
+                            <option value="Pasir Ris">
+                            <option value="Punggol">
+                            <option value="Queenstown">
+                            <option value="Sembawang">
+                            <option value="Sengkang">
+                            <option value="Serangoon">
+                            <option value="Simei">
+                            <option value="Tampines">
+                            <option value="Toa Payoh">
+                            <option value="Ubi">
+                            <option value="Woodlands">
+                            <option value="Yio Chu Kang">
+                            <option value="Yishun">
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Cuisine</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="cuisine">
+                            <option selected></option>
+                            <option value="chinese">Chinese</option>
+                            <option value="malay">Malay</option>
+                            <option value="indian">Indian</option>
+                            <option value="western">Western</option>
+                            <option value="international">International</option>
+                            <option value="beverages">Beverages</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Grading</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="grading">
+                            <option selected></option>
+                            <option value="grade-a">A</option>
+                            <option value="grade-b">B</option>
+                            <option value="grade-c">C</option>
+                            <option value="grade-d">D</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Ratings</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="rating">
+                            <option selected></option>
+                            <option value="1-star">1 star</option>
+                            <option value="2-star">2 star</option>
+                            <option value="3-star">3 star</option>
+                            <option value="4-star">4 star</option>
+                            <option value="5-star">5 star</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">No. of Reviews</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="reviews">
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Filter" />
+            </form>
+        </div>
+        <div class="col-sm-9">
+            <!--Results display-->
+            {%for stall in all_stalls %}
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/images/home_banner.png" alt="">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{stall.stall_name}}</h5>
+                            <p class="card-text">{{stall.area}}, {{stall.grading}}, {{stall.address}}</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+
+
+            
+            <!--<div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{stall.stall_name}}</h5>
+                    <p class="card-text">{{stall.area}}, {{stall.grading}}, {{stall.address}}</p>
+                    <a href="#" class="btn btn-primary">View</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>-->
+
+
+
+
+
+
 
 
 
