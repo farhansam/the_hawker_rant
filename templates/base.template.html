@@ -14,18 +14,18 @@
     <!--Navbar-->
     <nav class="d-flex bd-highlight navbar navbar-light bg-light">
         <div class="p-2 flex-grow-1 bd-highlight">
-            <a class="navbar-brand" href="#">
+            <a href="{{url_for('home')}}" class="navbar-brand" href="#">
                 <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
                 The Hawker-rant
             </a>
         </div>
         <div class="p-2 bd-highlight">
-            <a class="container-fluid justify-content-start">
+            <a href="{{url_for('show_search_results')}}" class="container-fluid justify-content-start">
                 <button class="btn btn-outline-success me-2" type="button">Search by preference</button>
             </a>
         </div>
         <div class="p-2 bd-highlight">
-            <a class="container-fluid justify-content-start">
+            <a href="{{url_for('show_create_stall')}}" class="container-fluid justify-content-start">
                 <button class="btn btn-outline-success me-2" type="button">Contribute stall info</button>
             </a>
         </div>
