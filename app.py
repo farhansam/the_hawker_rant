@@ -77,12 +77,7 @@ def process_create_stall():
 # Show all stalls & search for stall
 @app.route('/stall/results')
 def show_search_results():
-    stall_name_search = request.args.get('stall_name_search')
-
-    #criteria = {}
-
-    #if stall_name_search:
-        #criteria['stall_name'] = stall_name_search
+    stall_name_search = str(request.args.get('stall_name_search'))
 
     all_stalls = db.foodStalls.find({
         'stall_name': {
