@@ -127,7 +127,7 @@ The Hawker Rant
     </div>
     <div class="col-sm-9">
         <!--Results display-->
-        {%for stall in find_stall %}
+        {%for stall in search_stall %}
         <div class="card mb-3" style="max-width: auto;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -144,7 +144,7 @@ The Hawker Rant
             </div>
         </div>
         {%endfor%}
-        {%for stall in listings %}
+        {%for stall in filter_stall %}
         <div class="card mb-3" style="max-width: auto;">
             <div class="row g-0">
                 <div class="col-md-4">
