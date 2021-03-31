@@ -27,7 +27,6 @@ def home():
 def show_create_stall():
     return render_template('create_stall.template.html')
 
-
 @app.route('/stall/create', methods=["POST"])
 def process_create_stall():
     stall_name = request.form.get('stall_name')
@@ -54,52 +53,35 @@ def process_create_stall():
 
     return redirect(url_for('show_create_stall'))
 
+
+# Show all stalls and take in form input
 @app.route('/stall/results')
-def show_search_results():
-    find_stall_name = str(request.args.get('find_stall_name'))
+def show_all_stalls():
+    all_stalls = db.foodStalls.find()
+    # find_stall_name = str(request.args.get('find_stall_name'))
 
-    criteria = {}
+    # criteria = {}
 
-    if find_stall_name:
+    # if find_stall_name:
 
-        criteria['stall_name'] = {'$regex': find_stall_name, '$options': 'i'}
+    #     criteria['stall_name'] = {'$regex': find_stall_name, '$options': 'i'}
 
-        search_stall = db.foodStalls.find(criteria, {
-            'stall_name': 1,
-            'area': 1,
-            'grading': 1,
-            'address': 1
-        })
-    return render_template('results.template.html', search_stall=search_stall)
-
-
+    #     all_stalls = db.foodStalls.find(criteria, {
+    #         'stall_name': 1,
+    #         'area': 1,
+    #         'grading': 1,
+    #         'address': 1
+    #     })
 
 
+    return render_template('results.template.html', all_stalls=all_stalls,)
 
-
-# # Delete stall
-# @app.route('/stall/<stall_id>/delete')
-# def delete_stall(stall_id):
-#     stall = db.foodStalls.find_one({
-#         '_id': ObjectId(stall_id)
-#     })
-
-#     return render_template('confirm_delete_stall.template.html',
-#                            stall_to_delete=stall)
-
-
-# @app.route('/stall/<stall_id>/delete', methods=["POST"])
-# def process_delete_stall(stall_id):
-#     db.foodStalls.remove({
-#         "_id": ObjectId(stall_id)
-#     })
-#     return redirect(url_for('show_search_results'))
 
 
 # Display page
-@app.route('/stall/display')
-def show_stall_info():
-    return render_template('display.template.html')
+@app.route('/stall/display/<stall_id>')
+def show_stall_info(stall_id):
+    return render_template('display.template.html', stall_id=stall_id)
 
 
 if __name__ == '__main__':
