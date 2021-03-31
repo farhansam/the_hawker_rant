@@ -57,12 +57,14 @@ def process_create_stall():
 @app.route('/stall/results')
 def show_search_results():
     find_stall_name = str(request.args.get('find_stall_name'))
+
+    criteria = {}
+
     if find_stall_name:
-        search_stall = db.foodStalls.find({
-            'stall_name': {
-                '$regex': find_stall_name, '$options': 'i'
-            }
-        }, {
+
+        criteria['stall_name'] = {'$regex': find_stall_name, '$options': 'i'}
+
+        search_stall = db.foodStalls.find(criteria, {
             'stall_name': 1,
             'area': 1,
             'grading': 1,
