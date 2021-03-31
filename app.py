@@ -23,10 +23,12 @@ def home():
 
 
 # Create stall
+# Show form to create stall
 @app.route('/stall/create')
 def show_create_stall():
     return render_template('create_stall.template.html')
 
+# Process form to create stall
 @app.route('/stall/create', methods=["POST"])
 def process_create_stall():
     stall_name = request.form.get('stall_name')
@@ -54,7 +56,7 @@ def process_create_stall():
     return redirect(url_for('show_create_stall'))
 
 
-# Show all stalls and take in form input
+# Show all stalls
 @app.route('/stall/results')
 def show_all_stalls():
     all_stalls = db.foodStalls.find()
@@ -73,15 +75,18 @@ def show_all_stalls():
     #         'address': 1
     #     })
 
-
     return render_template('results.template.html', all_stalls=all_stalls,)
 
 
-
-# Display page
-@app.route('/stall/display/<stall_id>')
+# Display stall information and show form to create review
+@app.route('/stall/<stall_id>/display')
 def show_stall_info(stall_id):
     return render_template('display.template.html', stall_id=stall_id)
+
+# Process form to create review
+@app.route('/stall/<stall_id>/display', methods=["POST"])
+def process_create_review():
+    return redirect(url_for('show_stall_info'))
 
 
 if __name__ == '__main__':
