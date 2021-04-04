@@ -79,14 +79,26 @@ def show_all_stalls():
 
 
 # Display stall information and show form to create review
-@app.route('/stall/<stall_id>/display')
-def show_stall_info(stall_id):
-    return render_template('display.template.html', stall_id=stall_id)
+@app.route('/stall/<stall_id>/<stall_name>/display')
+def show_stall_info(stall_id, stall_name):
+    return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name)
 
 # Process form to create review
-@app.route('/stall/<stall_id>/display', methods=["POST"])
-def process_create_review():
-    return redirect(url_for('show_stall_info'))
+@app.route('/stall/<stall_id>/<stall_name>/display', methods=["POST"])
+def process_create_review(stall_id, stall_name):
+    user_name = request.form.get('user_name')
+    comment = request.form.get('comment')
+    reviewed_stall_name = stall_name
+    reviewed_stall_id = stall_id
+
+    db.stallReviews.insert_one({
+        "user_name": user_name.lower(),
+        "comment": comment.lower(),
+        "reviewed_stall_name": stall_name.lower(),
+        "reviewed_stall_id": "ObjectId({reviewed_stall_id})"
+    })
+
+    return redirect(url_for('show_stall_info', stall_id=stall_id, stall_name=stall_name))
 
 
 if __name__ == '__main__':
