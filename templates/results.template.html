@@ -140,7 +140,7 @@ The Hawker Rant
                         <p class="card-text">{{stall.address}}</p>
                         <p class="card-text mb-0"><small class="text-muted">Rating: </small></p>
                         <p class="card-text"><small class="text-muted">__ reviews </small></p>
-                        <a href="{{url_for('show_stall_info', stall_id=stall._id, stall_name=stall.stall_name)}}" class="btn btn-primary">View</a>
+                        <a href="{{url_for('show_stall_info', stall_id=stall._id, stall_name=stall.stall_name, address=stall.address)}}" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
