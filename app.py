@@ -83,7 +83,16 @@ def show_all_stalls():
 def show_stall_info(stall_id, stall_name, address):
     address = address
 
-    return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, address=address)
+    reviewed_stall_id = ObjectId(stall_id)
+
+    stall_reviews = db.stallReviews.find({
+        'reviewed_stall_id': reviewed_stall_id
+    }, {
+        'user_name':1,
+        'comment':1
+    })
+
+    return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, address=address, stall_reviews=stall_reviews)
 
 # Process form to create review
 @app.route('/stall/<stall_id>/<stall_name>/<address>/display', methods=["POST"])

@@ -46,6 +46,15 @@ The Hawker Rant
     </div>
 </form>
 
+<h1>All Reviews</h1>
+
+{%for review in stall_reviews %}
+<div class="container border border-1 rounded-3 card-body">
+    <h2>{{review.user_name}}</h2>
+    <p>{{review.comment}}</p>
+</div>
+{%endfor%}
+
 
 
 
