@@ -133,6 +133,26 @@ def process_delete_stall(stall_id):
     return redirect(url_for('show_all_stalls'))
 
 
+# Delete review
+@app.route('/review/<review_id>/delete')
+def delete_review(review_id):
+    review = db.stallReviews.find_one({
+        '_id': ObjectId(review_id)
+    })
+
+    return render_template('confirm_delete_review.template.html', review=review)
+
+# Process to delete review
+@app.route('/review/<review_id>/delete', methods=['POST'])
+def process_delete_review(review_id):
+
+    db.stallReviews.remove({
+        '_id': ObjectId(review_id)
+    })
+
+    return redirect(url_for('show_all_stalls'))
+
+
 
 
 
