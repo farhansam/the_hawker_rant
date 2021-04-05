@@ -81,8 +81,6 @@ def show_all_stalls():
 # Display stall information and show form to create review
 @app.route('/stall/<stall_id>/<stall_name>/<address>/display')
 def show_stall_info(stall_id, stall_name, address):
-    address = address
-
     reviewed_stall_id = ObjectId(stall_id)
 
     stall_reviews = db.stallReviews.find({
@@ -112,6 +110,27 @@ def process_create_review(stall_id, stall_name, address):
     return redirect(url_for('show_stall_info', stall_id=stall_id, stall_name=stall_name, address=address))
 
 
+# Update stall
+@app.route('/stall/<stall_id>/update')
+def show_update_stall(stall_id):
+    stall = db.foodStalls.find_one({
+        '_id': ObjectId(stall_id)
+    })
+    return render_template('show_update_stall.template.html',
+                           stall=stall)
+
+# Process to update stall
+@app.route('/stall/<stall_id>/update', methods=["POST"])
+def process_update_stall(stall_id):
+    db.foodStalls.update_one({
+        "_id": ObjectId(stall_id)
+    }, {
+        '$set': request.form
+    })
+    return redirect(url_for('show_all_stalls'))
+
+
+
 # Delete stall
 @app.route('/stall/<stall_id>/delete')
 def delete_stall(stall_id):
@@ -125,12 +144,16 @@ def delete_stall(stall_id):
 @app.route('/stall/<stall_id>/delete', methods=['POST'])
 def process_delete_stall(stall_id):
 
-
     db.foodStalls.remove({
         '_id': ObjectId(stall_id)
     })
 
     return redirect(url_for('show_all_stalls'))
+
+
+
+
+
 
 
 # Delete review
