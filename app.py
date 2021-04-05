@@ -112,6 +112,31 @@ def process_create_review(stall_id, stall_name, address):
     return redirect(url_for('show_stall_info', stall_id=stall_id, stall_name=stall_name, address=address))
 
 
+# Delete stall
+@app.route('/stall/<stall_id>/delete')
+def delete_stall(stall_id):
+    stall = db.foodStalls.find_one({
+        '_id': ObjectId(stall_id)
+    })
+
+    return render_template('confirm_delete_stall.template.html', stall=stall)
+
+# Process to delete stall
+@app.route('/stall/<stall_id>/delete', methods=['POST'])
+def process_delete_stall(stall_id):
+
+
+    db.foodStalls.remove({
+        '_id': ObjectId(stall_id)
+    })
+
+    return redirect(url_for('show_all_stalls'))
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
