@@ -1,0 +1,30 @@
+{% extends 'base.template.html' %}
+
+{%block title %}
+The Hawker Rant
+{%endblock%}
+
+{% block content %}
+
+<form class="container border border-1 rounded-3 card-body" method="POST">
+    <h4>Edit review</h4>
+    <div class="row mb-3">
+        <label class="form-label col-sm-1">Username</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control col-sm-10" name="user_name" value="{{review.user_name}}">
+        </div>
+        <div class="col-sm-8">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="form-label col-sm-1">Comments</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" name="comment" rows="3">{{review.comment}}</textarea>
+        </div>
+        <div class="col-sm-2 align-self-end d-flex justify-content-end">
+            <input type="submit" class="btn btn-primary" value="Update review" />
+        </div>
+    </div>
+</form>
+
+{% endblock %}
