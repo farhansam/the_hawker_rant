@@ -15,7 +15,6 @@ DB_NAME = 'thr_db'
 client = pymongo.MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
-
 # Home page
 @app.route('/')
 def home():
@@ -32,25 +31,17 @@ def show_create_stall():
 @app.route('/stall/create', methods=["POST"])
 def process_create_stall():
     stall_name = request.form.get('stall_name')
-    grading = request.form.get('grading')
-    address = request.form.get('address')
-    area = request.form.get('area')
-    estate = request.form.get('estate')
-    cuisine = request.form.get('cuisine')
-    specialty_dish_1 = request.form.get('specialty_dish_1')
-    specialty_dish_2 = request.form.get('specialty_dish_2')
-    specialty_dish_3 = request.form.get('specialty_dish_3')
+    hawker_centre = request.form.get('hawker_centre')
+    specialty = request.form.get('specialty')
+    unit_no = request.form.get('unit_no')
+    opening_hours = request.form.get('opening_hours')
 
     db.foodStalls.insert_one({
-        "stall_name": stall_name.lower(),
-        "grading": grading.lower(),
-        "address": address.lower(),
-        "area": area.lower(),
-        "estate": estate.lower(),
-        "cuisine": cuisine.lower(),
-        "specialty_dish_1": specialty_dish_1.lower(),
-        "specialty_dish_2": specialty_dish_2.lower(),
-        "specialty_dish_3": specialty_dish_3.lower()
+        "stall_name": stall_name,
+        "hawker_centre": hawker_centre,
+        "specialty": specialty,
+        "unit_no": unit_no,
+        "opening_hours": opening_hours
     })
 
     return redirect(url_for('show_create_stall'))

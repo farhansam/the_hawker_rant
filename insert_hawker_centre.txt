@@ -1,0 +1,13 @@
+db.foodStalls.insert([
+    {
+    'stall_name':'Tiong Bahru Yi Sheng Fried Hokkien Mee',
+    'hawker_centre':'ABC Brickworks Food Centre',
+    'specialty':'hokkien mee',
+    'unit_no':'#01-13',
+    'opening_hours':'3pm – 10:45pm (Mon – Tues, Thurs – Sun), Closed Wed'
+    }
+])
+
+
+
+mongo "mongodb+srv://cluster0.ezqov.mongodb.net/" --username root
