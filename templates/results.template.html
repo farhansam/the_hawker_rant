@@ -136,11 +136,9 @@ The Hawker Rant
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{{stall.stall_name}}</h5>
-                        <p class="card-text mb-0">{{stall.estate}}</p>
-                        <p class="card-text">{{stall.address}}</p>
-                        <p class="card-text mb-0"><small class="text-muted">Rating: </small></p>
-                        <p class="card-text"><small class="text-muted">__ reviews </small></p>
-                        <a href="{{url_for('show_stall_info', stall_id=stall._id, stall_name=stall.stall_name, address=stall.address)}}" class="btn btn-primary">View</a>
+                        <p class="card-text mb-3">{{stall.hawker_centre}}</p>
+                        <p class="card-text mt-3 mb-1"><small class="text-muted">Best known for {{stall.specialty}}</small></p>
+                        <a href="{{url_for('show_stall_info', stall_id=stall._id, stall_name=stall.stall_name, hawker_centre=stall.hawker_centre)}}" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>

@@ -173,7 +173,7 @@ def process_update_stall(stall_id):
     }, {
         '$set': request.form
     })
-    return redirect(url_for('show_all_stalls'))
+    return redirect(url_for('home'))
 
 
 
@@ -194,7 +194,7 @@ def process_delete_stall(stall_id):
         '_id': ObjectId(stall_id)
     })
 
-    return redirect(url_for('show_all_stalls'))
+    return redirect(url_for('home'))
 
 
 # Update review
