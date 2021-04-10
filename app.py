@@ -21,24 +21,10 @@ def home():
     all_hawker = db.hawkerCentres.find()
     return render_template('home.template.html', all_hawker=all_hawker)
 
-
 # Process form for hawker centre search
 @app.route('/', methods=["POST"])
 def process_search_hawker():
     hawker_centre = request.form.get('hawker_centre_search')
-
-    print(hawker_centre)
-
-    
-
-    # stalls_in_hawker = db.foodStalls.find({
-    #     'hawker_centre': hawker_centre
-    # }, {
-    #     'stall_name':1,
-    #     'hawker_centre':1,
-    #     'specialty':1
-    # })
-
     return redirect(url_for('show_stalls_in_hawker', hawker_centre=hawker_centre))
 
 
@@ -48,12 +34,11 @@ def show_stalls_in_hawker(hawker_centre):
     stalls = db.foodStalls.find({
         'hawker_centre': hawker_centre
     }, {
-        'stall_name':1,
-        'hawker_centre':1,
-        'specialty':1
+        'stall_name': 1,
+        'hawker_centre': 1,
+        'specialty': 1
     })
     return render_template('stalls_by_hawker.template.html', stalls=stalls)
-
 
 
 # Create stall
@@ -83,27 +68,27 @@ def process_create_stall():
     return redirect(url_for('show_create_stall'))
 
 
-
-# Show all stalls
+# Filter stalls
 @app.route('/stall/results')
-def show_all_stalls():
-    all_stalls = db.foodStalls.find()
-    # find_stall_name = str(request.args.get('find_stall_name'))
+def filter_stall():
+    find_stall = str(request.args.get('find_stall'))
+    find_specialty = str(request.args.get('find_specialty'))
 
-    # criteria = {}
+    criteria_stall = {}
 
-    # if find_stall_name:
+    if find_stall:
+        criteria_stall['stall_name'] = {'$regex': find_stall, '$options': 'i'}
 
-    #     criteria['stall_name'] = {'$regex': find_stall_name, '$options': 'i'}
+    if find_specialty:
+        criteria_stall['specialty'] = {'$regex': find_specialty, '$options': 'i'}
+    
+    display_stall = db.foodStalls.find(criteria_stall, {
+        'stall_name': 1,
+        'hawker_centre': 1,
+        'specialty': 1
+    })
 
-    #     all_stalls = db.foodStalls.find(criteria, {
-    #         'stall_name': 1,
-    #         'area': 1,
-    #         'grading': 1,
-    #         'address': 1
-    #     })
-
-    return render_template('results.template.html', all_stalls=all_stalls,)
+    return render_template('results.template.html', display_stall=display_stall)
 
 
 # Display stall information and show form to create review

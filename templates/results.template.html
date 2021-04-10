@@ -9,125 +9,30 @@ The Hawker Rant
 
 <div class="row">
     <div class="col-sm-3">
-        <!--Search by name-->
-        <div class="container-fluid mb-3">
-            <form method="GET" class="border border-1 rounded-3 card-body">
-                <label class="col-form-label">Search for a stall</label>
-                <input type="text" class="form-control" name="find_stall_name">
-                <input type="submit" value="Search" class="btn btn-primary mt-3" />
-            </form>
-        </div>
         <!--Search by filter-->
         <div class="container-fluid">
             <form method="GET" class="border border-1 rounded-3 card-body">
                 <div class="row mb-3">
-                    <label class="col-lg-4 col-form-label">Area</label>
+                    <label class="col-lg-4 col-form-label">Stall Name</label>
                     <div class="col-lg-8">
-                        <select class="form-select" aria-label="Default select example" name="find_area">
-                            <option selected></option>
-                            <option value="north">North</option>
-                            <option value="south">South</option>
-                            <option value="east">East</option>
-                            <option value="west">West</option>
-                            <option value="central">Central</option>
-                        </select>
+                        <input type="text" class="form-control" name="find_stall">
                     </div>
                 </div>
+                <h5>OR</h5>
                 <div class="row mb-3">
-                    <label class="col-lg-4 col-form-label">Estate</label>
+                    <label class="col-lg-4 col-form-label">Specialty Dish</label>
                     <div class="col-lg-8">
-                        <input class="form-control" list="estateOptions" name="find_estate">
-                        <datalist id="estateOptions">
-                            <option value="Aljunied">
-                            <option value="Ang Mo Kio">
-                            <option value="Bedok">
-                            <option value="Bishan">
-                            <option value="Bukit Batok">
-                            <option value="Bukit Merah">
-                            <option value="Bukit Panjang">
-                            <option value="Bukit Timah">
-                            <option value="Central Area">
-                            <option value="Choa Chu Kang">
-                            <option value="Clementi">
-                            <option value="Eunos">
-                            <option value="Geylang">
-                            <option value="Hougang">
-                            <option value="Jurong East">
-                            <option value="Jurong West">
-                            <option value="Kallang/Whampoa">
-                            <option value="Kembangan">
-                            <option value="Lim Chu Kang">
-                            <option value="Marine Parade">
-                            <option value="Pasir Ris">
-                            <option value="Punggol">
-                            <option value="Queenstown">
-                            <option value="Sembawang">
-                            <option value="Sengkang">
-                            <option value="Serangoon">
-                            <option value="Simei">
-                            <option value="Tampines">
-                            <option value="Toa Payoh">
-                            <option value="Ubi">
-                            <option value="Woodlands">
-                            <option value="Yio Chu Kang">
-                            <option value="Yishun">
-                        </datalist>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label class="col-lg-4 col-form-label">Cuisine</label>
-                    <div class="col-lg-8">
-                        <select class="form-select" aria-label="Default select example" name="find_cuisine">
-                            <option selected></option>
-                            <option value="chinese">Chinese</option>
-                            <option value="malay">Malay</option>
-                            <option value="indian">Indian</option>
-                            <option value="western">Western</option>
-                            <option value="international">International</option>
-                            <option value="beverages">Beverages</option>
-                            <option value="dessert">Dessert</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label class="col-lg-4 col-form-label">Grading</label>
-                    <div class="col-lg-8">
-                        <select class="form-select" aria-label="Default select example" name="find_grading">
-                            <option selected></option>
-                            <option value="a">A</option>
-                            <option value="b">B</option>
-                            <option value="c">C</option>
-                            <option value="d">D</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label class="col-lg-4 col-form-label">Ratings</label>
-                    <div class="col-lg-8">
-                        <select class="form-select" aria-label="Default select example" name="find_rating">
-                            <option selected></option>
-                            <option value="1-star">1 star</option>
-                            <option value="2-star">2 star</option>
-                            <option value="3-star">3 star</option>
-                            <option value="4-star">4 star</option>
-                            <option value="5-star">5 star</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label class="col-lg-4 col-form-label">No. of Reviews</label>
-                    <div class="col-lg-8">
-                        <input type="number" class="form-control" name="find_review">
+                        <input type="text" class="form-control" name="find_specialty">
                     </div>
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Filter" />
+                <input type="submit" class="btn btn-primary" value="Search" />
             </form>
         </div>
     </div>
     <div class="col-sm-9">
         <!--Results display-->
-        {%for stall in all_stalls %}
+        {%for stall in display_stall %}
         <div class="card mb-3" style="max-width: auto;">
             <div class="row g-0">
                 <div class="col-md-4">
