@@ -1,4 +1,4 @@
-db.foodStalls.insert([
+db.foodStalls.insertMany([
     {
     'stall_name':'Tiong Bahru Yi Sheng Fried Hokkien Mee',
     'hawker_centre':'ABC Brickworks Food Centre',

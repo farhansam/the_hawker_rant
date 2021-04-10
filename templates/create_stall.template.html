@@ -12,10 +12,9 @@ Create Stall Data
             <label class="col-sm-2 col-form-label">Hawker Centre</label>
             <div class="col-sm-10">
                 <select class="form-select" aria-label="Default select example" name="hawker_centre">
-                    <option value="ABC Brickworks Food Centre">ABC Brickworks Food Centre</option>
-                    <option value="Fengshan Food Centre">Fengshan Food Centre</option>
-                    <option value="Adam Food Centre">Adam Food Centre</option>
-                    <option value="East Coast Lagoon Food Centre">East Coast Lagoon Food Centre</option>
+                    {%for hawker in all_hawker %}
+                    <option value="{{hawker.name}}">{{hawker.name}}</option>
+                    {%endfor%}
                 </select>
             </div>
         </div>
@@ -61,7 +60,7 @@ Create Stall Data
             </div>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Create"/>
+        <input type="submit" class="btn btn-primary" value="Create" />
     </form>
 </div>
 {% endblock %}

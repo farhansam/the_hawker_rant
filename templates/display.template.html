@@ -8,10 +8,15 @@ The Hawker Rant
 <div class="container mb-3">
     <div class="row">
         <div class="col-sm-10">
-            <h1>{{stall_name}}</h1>
-            <h4>{{address}}</h4>
-            <h4>No of reviews</h4>
-            <h4>Rating</h4>
+            {%for stall in stall_to_display %}
+            {%for hawker in hawker_to_display %}
+            <h1>{{stall.stall_name}}</h1>
+            <h4>{{stall.hawker_centre}}</h4>
+            <h4>{{hawker.address}}, {{stall.unit_no}}</h4>
+            <h4>Opening hours: {{stall.opening_hours}}</h4>
+            <h6>Best known for {{stall.specialty}}</h6>
+            {%endfor%}
+            {%endfor%}
         </div>
         <div class="col-sm-2">
             <div class="d-flex justify-content-end">
