@@ -11,3 +11,8 @@ db.foodStalls.insert([
 
 
 mongo "mongodb+srv://cluster0.ezqov.mongodb.net/" --username root
+
+
+<option value="Fengshan Food Centre">Fengshan Food Centre</option>
+                        <option value="Adam Food Centre">Adam Food Centre</option>
+                        <option value="East Coast Lagoon Food Centre">East Coast Lagoon Food Centre</option>

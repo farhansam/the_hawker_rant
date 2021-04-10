@@ -10,16 +10,20 @@ The Hawker-rant
 
 <div class="container">
     <div class="container add-space">
-        <form method="GET">
+        <form method="POST">
             <label class="col-form-label">
-                <h1>Search for a hawker stall</h1>
+                <h1>Search by Hawker Centre</h1>
             </label>
             <div class="row">
                 <div class="col-sm-10">
-                    <input type="text" class="form-control form-control-lg" name="stall_name_search">
+                    <select class="form-select" aria-label="Default select example" name="hawker_centre_search">
+                        {%for hawker in all_hawker %}
+                        <option value="{{hawker.name}}">{{hawker.name}}</option>
+                        {%endfor%}
+                    </select>
                 </div>
                 <div class="col-sm-2">
-                    <input type="submit" value="Search" class="btn btn-primary btn-lg" />
+                    <input type="submit" class="btn btn-primary" value="Search"/>
                 </div>
             </div>
         </form>

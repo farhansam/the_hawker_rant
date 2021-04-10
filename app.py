@@ -18,7 +18,42 @@ db = client[DB_NAME]
 # Home page
 @app.route('/')
 def home():
-    return render_template('home.template.html')
+    all_hawker = db.hawkerCentres.find()
+    return render_template('home.template.html', all_hawker=all_hawker)
+
+
+# Process form for hawker centre search
+@app.route('/', methods=["POST"])
+def process_search_hawker():
+    hawker_centre = request.form.get('hawker_centre_search')
+
+    print(hawker_centre)
+
+    
+
+    # stalls_in_hawker = db.foodStalls.find({
+    #     'hawker_centre': hawker_centre
+    # }, {
+    #     'stall_name':1,
+    #     'hawker_centre':1,
+    #     'specialty':1
+    # })
+
+    return redirect(url_for('show_stalls_in_hawker', hawker_centre=hawker_centre))
+
+
+# Display stalls in selected hawker centre
+@app.route('/stalls/<hawker_centre>')
+def show_stalls_in_hawker(hawker_centre):
+    stalls = db.foodStalls.find({
+        'hawker_centre': hawker_centre
+    }, {
+        'stall_name':1,
+        'hawker_centre':1,
+        'specialty':1
+    })
+    return render_template('stalls_by_hawker.template.html', stalls=stalls)
+
 
 
 # Create stall
@@ -45,6 +80,7 @@ def process_create_stall():
     })
 
     return redirect(url_for('show_create_stall'))
+
 
 
 # Show all stalls
