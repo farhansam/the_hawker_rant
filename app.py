@@ -314,21 +314,11 @@ def delete_stall(stall_id):
 # Process to delete stall
 @app.route('/stall/<stall_id>/delete', methods=['POST'])
 def process_delete_stall(stall_id):
-
-    stall = db.foodStalls.find_one({
-        '_id': ObjectId(stall_id)
-    })
-    stall_name = stall['stall_name']
-    hawker_centre = stall['hawker_centre']
-
     db.foodStalls.remove({
         '_id': ObjectId(stall_id)
     })
     flash("Stall has been deleted!")
-    return redirect(url_for('show_stall_info',
-                            stall_id=stall_id,
-                            stall_name=stall_name,
-                            hawker_centre=hawker_centre))
+    return redirect(url_for('home'))
 
 
 # Update review
@@ -357,13 +347,27 @@ def process_update_review(review_id):
         errors['comment'] = "Enter your comments"
 
     if len(errors) == 0:
+        review = db.stallReviews.find_one({
+            '_id': ObjectId(review_id)
+        })
+        stall_id = review['reviewed_stall_id']
+
+        stall = db.foodStalls.find_one({
+            '_id': ObjectId(stall_id)
+        })
+        stall_name = stall['stall_name']
+        hawker_centre = stall['hawker_centre']
+
         db.stallReviews.update_one({
             "_id": ObjectId(review_id)
         }, {
             '$set': request.form
         })
         flash("Review has been updated!")
-        return redirect(url_for('home'))
+        return redirect(url_for('show_stall_info',
+                                stall_id=stall_id,
+                                stall_name=stall_name,
+                                hawker_centre=hawker_centre))
     else:
         old_values = {**request.form}
         review = db.stallReviews.find_one({
