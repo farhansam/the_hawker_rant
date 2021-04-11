@@ -1,4 +1,6 @@
-
+body {
+    font-family: 'Handlee', cursive;
+}
 
 .margin-main-search-bar {
     margin-top: 5em;
@@ -21,7 +23,11 @@
     margin-bottom: 3em;
 }
 
-.card-image{
+.card-image {
     width: auto;
+}
+
+.custom-text {
+    color: purple;
 }
 
