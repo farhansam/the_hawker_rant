@@ -1,5 +1,20 @@
-.add-space{
-    margin-bottom: 10rem;
+body {
+    background-image: url('/static/images/home_banner.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.margin-main-search-bar {
+    margin-top: 5em;
+}
+
+.margin-in-search-bar-div{
+    margin-bottom: 7rem;
+}
+
+.main-search-bar {
+    background-color: #ffffff00;
 }
 
 .card-image{
