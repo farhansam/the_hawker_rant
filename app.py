@@ -34,7 +34,8 @@ def process_search_hawker():
     if len(errors) == 0:
         return redirect(url_for('show_stalls_in_hawker', hawker_centre=hawker_centre))
     else:
-        return render_template('home.template.html', errors=errors)
+        all_hawker = db.hawkerCentres.find()
+        return render_template('home.template.html', all_hawker=all_hawker, errors=errors)
 
 
 # Display stalls in selected hawker centre
