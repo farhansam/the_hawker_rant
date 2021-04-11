@@ -7,11 +7,11 @@ The Hawker-rant
 {% block content %}
 <style>
     body {
-    background-image: url('/static/images/home_banner.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
+        background-image: url('/static/images/home_banner.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
 </style>
 
 <div class="container margin-main-search-bar">
@@ -26,11 +26,19 @@ The Hawker-rant
                     </label>
                     <div class="row">
                         <div class="col-sm-10">
-                            <select class="form-select main-search-bar" aria-label="Default select example" name="hawker_centre_search">
+                            <select
+                                class="form-select main-search-bar {% if errors.hawker_centre %} is-invalid {%endif%}"
+                                aria-label="Default select example" name="hawker_centre_search">
+                                <option></option>
                                 {%for hawker in all_hawker %}
                                 <option value="{{hawker.name}}">{{hawker.name}}</option>
                                 {%endfor%}
                             </select>
+                            {% if errors.hawker_centre %}
+                            <div class="invalid-feedback">
+                                {{errors.hawker_centre}}
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="col-sm-2">
                             <input type="submit" class="btn btn-primary" value="Search" />
@@ -60,4 +68,4 @@ The Hawker-rant
 
 
 
-    {% endblock %}
+{% endblock %}

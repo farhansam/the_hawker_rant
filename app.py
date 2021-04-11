@@ -20,13 +20,21 @@ db = client[DB_NAME]
 @app.route('/')
 def home():
     all_hawker = db.hawkerCentres.find()
-    return render_template('home.template.html', all_hawker=all_hawker)
+    return render_template('home.template.html', all_hawker=all_hawker, errors={})
 
 # Process form for hawker centre search
 @app.route('/', methods=["POST"])
 def process_search_hawker():
     hawker_centre = request.form.get('hawker_centre_search')
-    return redirect(url_for('show_stalls_in_hawker', hawker_centre=hawker_centre))
+
+    errors = {}
+    if hawker_centre == "":
+        errors['hawker_centre'] = "Please select a hawker centre"
+
+    if len(errors) == 0:
+        return redirect(url_for('show_stalls_in_hawker', hawker_centre=hawker_centre))
+    else:
+        return render_template('home.template.html', errors=errors)
 
 
 # Display stalls in selected hawker centre
