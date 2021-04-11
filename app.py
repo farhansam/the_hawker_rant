@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = b'#$%^&ABC123'
+app.secret_key = os.environ.get('SECRET_KEY')
 
 MONGO_URI = os.environ.get('MONGO_URI')
 DB_NAME = 'thr_db'
@@ -136,7 +136,7 @@ def process_create_review(stall_id, stall_name, hawker_centre):
         "reviewed_stall_name": stall_name,
         "reviewed_stall_id": reviewed_stall_id
     })
-
+    flash("New review created!")
     return redirect(url_for('show_stall_info', stall_id=stall_id, stall_name=stall_name, hawker_centre=hawker_centre))
 
 
@@ -159,6 +159,7 @@ def process_update_stall(stall_id):
     }, {
         '$set': request.form
     })
+    flash("Stall info has been updated!")
     return redirect(url_for('home'))
 
 
@@ -179,7 +180,7 @@ def process_delete_stall(stall_id):
     db.foodStalls.remove({
         '_id': ObjectId(stall_id)
     })
-
+    flash("Stall has been deleted!")
     return redirect(url_for('home'))
 
 
@@ -200,9 +201,8 @@ def process_update_review(review_id):
     }, {
         '$set': request.form
     })
+    flash("Review has been updated!")
     return redirect(url_for('show_all_stalls'))
-
-
 
 
 # Delete review
@@ -221,7 +221,7 @@ def process_delete_review(review_id):
     db.stallReviews.remove({
         '_id': ObjectId(review_id)
     })
-
+    flash("Review has been deleted!")
     return redirect(url_for('show_all_stalls'))
 
 
