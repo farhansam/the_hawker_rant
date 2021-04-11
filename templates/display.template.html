@@ -10,11 +10,11 @@ The Hawker Rant
         <div class="col-sm-10">
             {%for stall in stall_to_display %}
             {%for hawker in hawker_to_display %}
-            <h2>{{stall.stall_name}}</h2>
+            <h2><span class="custom-header">{{stall.stall_name}}</span></h2>
             <h5>{{stall.hawker_centre}}</h5>
             <h5>{{hawker.address}}, {{stall.unit_no}}</h5>
             <h5 class="mb-3">Opening hours: {{stall.opening_hours}}</h5>
-            <h6>Best known for {{stall.specialty}}</h6>
+            <h6><span class="custom-small-text">Best known for {{stall.specialty}}</span></h6>
             {%endfor%}
             {%endfor%}
         </div>
@@ -73,7 +73,7 @@ The Hawker Rant
     <div class="container border border-1 rounded-3 card-body margin-custom-div bg-light">
         <div class="row">
             <div class="col-sm-10">
-                <h6><span class="custom-text">{{review.user_name}}</span> says</h6>
+                <h6><span class="custom-username-text">{{review.user_name}}</span> says</h6>
                 <div class="container">
                     <p>{{review.comment}}</p>
                 </div>

@@ -27,7 +27,15 @@ body {
     width: auto;
 }
 
-.custom-text {
+.custom-header {
+    color: green;
+}
+
+.custom-small-text {
+    color: gray;
+}
+
+.custom-username-text {
     color: purple;
 }
 
