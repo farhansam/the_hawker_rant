@@ -188,20 +188,50 @@ def show_update_stall(stall_id):
         '_id': ObjectId(stall_id)
     })
     return render_template('show_update_stall.template.html', all_hawker=all_hawker,
-                           stall=stall)
+                           stall=stall, errors={}, old_values={})
+
 
 # Process to update stall
-
-
 @app.route('/stall/<stall_id>/update', methods=["POST"])
 def process_update_stall(stall_id):
-    db.foodStalls.update_one({
-        "_id": ObjectId(stall_id)
-    }, {
-        '$set': request.form
-    })
-    flash("Stall info has been updated!")
-    return redirect(url_for('home'))
+    stall_name = request.form.get('stall_name')
+    hawker_centre = request.form.get('hawker_centre')
+    specialty = request.form.get('specialty')
+    unit_no = request.form.get('unit_no')
+    opening_hours = request.form.get('opening_hours')
+
+    errors = {}
+    if stall_name == "":
+        errors['stall_name'] = "Stall name cannot be blank"
+
+    if hawker_centre == "":
+        errors['hawker_centre'] = "Please select a hawker centre"
+
+    if specialty == "":
+        errors['specialty'] = "Specialty dish cannot be blank"
+
+    if unit_no == "":
+        errors['unit_no'] = "Unit number cannot be blank"
+
+    if opening_hours == "":
+        errors['opening_hours'] = "Opening hours cannot be blank"
+
+    if len(errors) == 0:
+        db.foodStalls.update_one({
+            "_id": ObjectId(stall_id)
+        }, {
+            '$set': request.form
+        })
+        flash("Stall info has been updated!")
+        return redirect(url_for('home'))
+    else:
+        all_hawker = db.hawkerCentres.find()
+        old_values = {**request.form}
+        stall = db.foodStalls.find_one({
+            '_id': ObjectId(stall_id)
+        })
+        return render_template('show_update_stall.template.html', all_hawker=all_hawker,
+                           stall=stall, errors=errors, old_values=old_values)
 
 
 # Delete stall
