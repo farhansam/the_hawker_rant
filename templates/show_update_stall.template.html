@@ -5,66 +5,76 @@ Create Stall Data
 {%endblock%}
 
 {% block content %}
-<h1>This is the page to edit stall data</h1>
-<h4>Editing data for {{stall.stall_name}}</h4>
+
+<h3 class="text-center margin-custom">Editing information for {{stall.stall_name}}</h3>
 
 <div class="container">
-    <form method="POST">
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Hawker Centre</label>
-            <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example" name="hawker_centre">
-                    <option></option>
-                    {%for hawker in all_hawker %}
-                    <option value="{{hawker.name}}">{{hawker.name}}</option>
-                    {%endfor%}
-                </select>
-            </div>
+    <div class="row">
+        <div class="col-sm-2">
         </div>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Stall Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="stall_name" value="{{stall.stall_name}}">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Specialty Dish</label>
-            <div class="col-sm-10">
-                <input class="form-control" list="dishOptions" name="specialty" value="{{stall.specialty}}">
-                <datalist id="dishOptions">
-                    <option value="carrot cake">
-                    <option value="char kway teow">
-                    <option value="chicken chop">
-                    <option value="chicken rice">
-                    <option value="economy rice">
-                    <option value="fish and chips">
-                    <option value="hokkien noodle">
-                    <option value="laksa">
-                    <option value="mee goreng">
-                    <option value="nasi lemak">
-                    <option value="nasi padang">
-                    <option value="prawn noodle">
-                    <option value="rojak">
-                    <option value="roti prata">
-                    <option value="satay">
-                </datalist>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Unit No.</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="unit_no" value="{{stall.unit_no}}">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Opening Hours</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="opening_hours" value="{{stall.opening_hours}}">
-            </div>
-        </div>
+        <div class="col-sm-8">
+            <form method="POST">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Hawker Centre</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" name="hawker_centre">
+                            <option></option>
+                            {%for hawker in all_hawker %}
+                            <option value="{{hawker.name}}">{{hawker.name}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Stall Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="stall_name" value="{{stall.stall_name}}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Specialty Dish</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" list="dishOptions" name="specialty" value="{{stall.specialty}}">
+                        <datalist id="dishOptions">
+                            <option value="carrot cake">
+                            <option value="char kway teow">
+                            <option value="chicken chop">
+                            <option value="chicken rice">
+                            <option value="economy rice">
+                            <option value="fish and chips">
+                            <option value="hokkien noodle">
+                            <option value="laksa">
+                            <option value="mee goreng">
+                            <option value="nasi lemak">
+                            <option value="nasi padang">
+                            <option value="prawn noodle">
+                            <option value="rojak">
+                            <option value="roti prata">
+                            <option value="satay">
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Unit No.</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="unit_no" value="{{stall.unit_no}}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Opening Hours</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="opening_hours" value="{{stall.opening_hours}}">
+                    </div>
+                </div>
 
-        <input type="submit" class="btn btn-primary" value="Update" />
-    </form>
+                <input type="submit" class="btn btn-primary" value="Update" />
+            </form>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+
+
 </div>
 
 {% endblock %}

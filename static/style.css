@@ -1,9 +1,4 @@
-body {
-    background-image: url('/static/images/home_banner.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
+
 
 .margin-main-search-bar {
     margin-top: 5em;
@@ -15,8 +10,14 @@ body {
 
 .main-search-bar {
     background-color: #ffffff00;
+    border-color: #212529;
+}
+
+.margin-custom {
+    margin-bottom: 1em;
 }
 
 .card-image{
     width: auto;
 }
+
