@@ -61,11 +61,10 @@ def show_stalls_in_hawker(hawker_centre):
 @app.route('/stall/create')
 def show_create_stall():
     all_hawker = db.hawkerCentres.find()
-    return render_template('create_stall.template.html', all_hawker=all_hawker)
+    return render_template('create_stall.template.html', all_hawker=all_hawker, errors={}, old_values={})
+
 
 # Process form to create stall
-
-
 @app.route('/stall/create', methods=["POST"])
 def process_create_stall():
     stall_name = request.form.get('stall_name')
@@ -74,15 +73,36 @@ def process_create_stall():
     unit_no = request.form.get('unit_no')
     opening_hours = request.form.get('opening_hours')
 
-    db.foodStalls.insert_one({
-        "stall_name": stall_name,
-        "hawker_centre": hawker_centre,
-        "specialty": specialty,
-        "unit_no": unit_no,
-        "opening_hours": opening_hours
-    })
-    flash("New stall has been created!")
-    return redirect(url_for('show_create_stall'))
+    errors = {}
+    if stall_name == "":
+        errors['stall_name'] = "Stall name cannot be blank"
+
+    if hawker_centre == "":
+        errors['hawker_centre'] = "Please select a hawker centre"
+
+    if specialty == "":
+        errors['specialty'] = "Specialty dish cannot be blank"
+
+    if unit_no == "":
+        errors['unit_no'] = "Unit number cannot be blank"
+
+    if opening_hours == "":
+        errors['opening_hours'] = "Opening hours cannot be blank"
+
+    if len(errors) == 0:
+        db.foodStalls.insert_one({
+            "stall_name": stall_name,
+            "hawker_centre": hawker_centre,
+            "specialty": specialty,
+            "unit_no": unit_no,
+            "opening_hours": opening_hours
+        })
+        flash("New stall has been created!")
+        return redirect(url_for('show_create_stall'))
+    else:
+        all_hawker = db.hawkerCentres.find()
+        return render_template('create_stall.template.html',
+                               all_hawker=all_hawker, errors=errors, old_values=request.form)
 
 
 # Filter stalls
