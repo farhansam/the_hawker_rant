@@ -17,9 +17,9 @@ Create Stall Data
                     <div class="col-sm-9">
                         <select class="form-select {% if errors.hawker_centre %} is-invalid {%endif%}"
                             aria-label="Default select example" name="hawker_centre">
-                            <option value="{{old_values.hawker_centre}}"></option>
+                            <option></option>
                             {%for hawker in all_hawker %}
-                            <option value="{{hawker.name}}">{{hawker.name}}</option>
+                            <option value="{{hawker.name}}" {% if hawker.name == old_values.hawker_centre %} selected {%endif%}>{{hawker.name}}</option>
                             {%endfor%}
                         </select>
                         {% if errors.hawker_centre %}
