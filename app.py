@@ -22,7 +22,8 @@ db = client[DB_NAME]
 def home():
     all_hawker = db.hawkerCentres.find()
     return render_template('home.template.html',
-                           all_hawker=all_hawker, errors={})
+                           all_hawker=all_hawker,
+                           errors={})
 
 
 # Process form for hawker centre search
@@ -40,7 +41,8 @@ def process_search_hawker():
     else:
         all_hawker = db.hawkerCentres.find()
         return render_template('home.template.html',
-                               all_hawker=all_hawker, errors=errors)
+                               all_hawker=all_hawker,
+                               errors=errors)
 
 
 # Display stalls in selected hawker centre
@@ -53,7 +55,8 @@ def show_stalls_in_hawker(hawker_centre):
         'hawker_centre': 1,
         'specialty': 1
     })
-    return render_template('stalls_by_hawker.template.html', stalls=stalls)
+    return render_template('stalls_by_hawker.template.html',
+                           stalls=stalls)
 
 
 # Create stall
@@ -61,7 +64,10 @@ def show_stalls_in_hawker(hawker_centre):
 @app.route('/stall/create')
 def show_create_stall():
     all_hawker = db.hawkerCentres.find()
-    return render_template('create_stall.template.html', all_hawker=all_hawker, errors={}, old_values={})
+    return render_template('create_stall.template.html',
+                           all_hawker=all_hawker,
+                           errors={},
+                           old_values={})
 
 
 # Process form to create stall
@@ -102,7 +108,9 @@ def process_create_stall():
     else:
         all_hawker = db.hawkerCentres.find()
         return render_template('create_stall.template.html',
-                               all_hawker=all_hawker, errors=errors, old_values=request.form)
+                               all_hawker=all_hawker,
+                               errors=errors,
+                               old_values=request.form)
 
 
 # Filter stalls
@@ -125,8 +133,8 @@ def filter_stall():
         'hawker_centre': 1,
         'specialty': 1
     })
-
-    return render_template('results.template.html', display_stall=display_stall)
+    return render_template('results.template.html',
+                           display_stall=display_stall)
 
 
 # Display stall information and show form to create review
@@ -156,17 +164,22 @@ def show_stall_info(stall_id, stall_name, hawker_centre):
         'user_name': 1,
         'comment': 1
     })
+    return render_template('display.template.html',
+                           stall_id=stall_id,
+                           stall_name=stall_name,
+                           stall_reviews=stall_reviews,
+                           stall_to_display=stall_to_display,
+                           hawker_to_display=hawker_to_display,
+                           errors={},
+                           old_values={})
 
-    return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, stall_reviews=stall_reviews, stall_to_display=stall_to_display, hawker_to_display=hawker_to_display, errors={}, old_values={})
 
 # Process form to create review
-
-
-@app.route('/stall/<stall_id>/<stall_name>/<hawker_centre>/display', methods=["POST"])
+@app.route('/stall/<stall_id>/<stall_name>/<hawker_centre>/display',
+           methods=["POST"])
 def process_create_review(stall_id, stall_name, hawker_centre):
     user_name = request.form.get('user_name')
     comment = request.form.get('comment')
-    reviewed_stall_name = stall_name
     reviewed_stall_id = ObjectId(stall_id)
 
     errors = {}
@@ -184,7 +197,10 @@ def process_create_review(stall_id, stall_name, hawker_centre):
             "reviewed_stall_id": reviewed_stall_id
         })
         flash("New review created!")
-        return redirect(url_for('show_stall_info', stall_id=stall_id, stall_name=stall_name, hawker_centre=hawker_centre))
+        return redirect(url_for('show_stall_info',
+                                stall_id=stall_id,
+                                stall_name=stall_name,
+                                hawker_centre=hawker_centre))
     else:
         reviewed_stall_id = ObjectId(stall_id)
 
@@ -211,7 +227,14 @@ def process_create_review(stall_id, stall_name, hawker_centre):
             'comment': 1
         })
 
-        return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, stall_reviews=stall_reviews, stall_to_display=stall_to_display, hawker_to_display=hawker_to_display, errors=errors, old_values=request.form)
+        return render_template('display.template.html',
+                               stall_id=stall_id,
+                               stall_name=stall_name,
+                               stall_reviews=stall_reviews,
+                               stall_to_display=stall_to_display,
+                               hawker_to_display=hawker_to_display,
+                               errors=errors,
+                               old_values=request.form)
 
 
 # Update stall
@@ -222,8 +245,11 @@ def show_update_stall(stall_id):
     stall = db.foodStalls.find_one({
         '_id': ObjectId(stall_id)
     })
-    return render_template('show_update_stall.template.html', all_hawker=all_hawker,
-                           stall=stall, errors={}, old_values={})
+    return render_template('show_update_stall.template.html',
+                           all_hawker=all_hawker,
+                           stall=stall,
+                           errors={},
+                           old_values={})
 
 
 # Process to update stall
@@ -265,8 +291,11 @@ def process_update_stall(stall_id):
         stall = db.foodStalls.find_one({
             '_id': ObjectId(stall_id)
         })
-        return render_template('show_update_stall.template.html', all_hawker=all_hawker,
-                               stall=stall, errors=errors, old_values=old_values)
+        return render_template('show_update_stall.template.html',
+                               all_hawker=all_hawker,
+                               stall=stall,
+                               errors=errors,
+                               old_values=old_values)
 
 
 # Delete stall
@@ -275,12 +304,11 @@ def delete_stall(stall_id):
     stall = db.foodStalls.find_one({
         '_id': ObjectId(stall_id)
     })
+    return render_template('confirm_delete_stall.template.html',
+                           stall=stall)
 
-    return render_template('confirm_delete_stall.template.html', stall=stall)
 
 # Process to delete stall
-
-
 @app.route('/stall/<stall_id>/delete', methods=['POST'])
 def process_delete_stall(stall_id):
 
@@ -300,9 +328,8 @@ def show_update_review(review_id):
     return render_template('show_update_review.template.html',
                            review=review)
 
+
 # Process to update review
-
-
 @app.route('/review/<review_id>/update', methods=["POST"])
 def process_update_review(review_id):
     db.stallReviews.update_one({
@@ -320,12 +347,11 @@ def delete_review(review_id):
     review = db.stallReviews.find_one({
         '_id': ObjectId(review_id)
     })
+    return render_template('confirm_delete_review.template.html',
+                           review=review)
 
-    return render_template('confirm_delete_review.template.html', review=review)
 
 # Process to delete review
-
-
 @app.route('/review/<review_id>/delete', methods=['POST'])
 def process_delete_review(review_id):
 
