@@ -326,19 +326,41 @@ def show_update_review(review_id):
         '_id': ObjectId(review_id)
     })
     return render_template('show_update_review.template.html',
-                           review=review)
+                           review=review,
+                           errors={},
+                           old_values={})
 
 
 # Process to update review
 @app.route('/review/<review_id>/update', methods=["POST"])
 def process_update_review(review_id):
-    db.stallReviews.update_one({
-        "_id": ObjectId(review_id)
-    }, {
-        '$set': request.form
-    })
-    flash("Review has been updated!")
-    return redirect(url_for('home'))
+    user_name = request.form.get('user_name')
+    comment = request.form.get('comment')
+
+    errors = {}
+    if user_name == "":
+        errors['user_name'] = "Enter a username"
+
+    if comment == "":
+        errors['comment'] = "Enter your comments"
+
+    if len(errors) == 0:
+        db.stallReviews.update_one({
+            "_id": ObjectId(review_id)
+        }, {
+            '$set': request.form
+        })
+        flash("Review has been updated!")
+        return redirect(url_for('home'))
+    else:
+        old_values = {**request.form}
+        review = db.stallReviews.find_one({
+            '_id': ObjectId(review_id)
+        })
+        return render_template('show_update_review.template.html',
+                               review=review,
+                               errors=errors,
+                               old_values=old_values)
 
 
 # Delete review
