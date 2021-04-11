@@ -16,11 +16,14 @@ DB_NAME = 'thr_db'
 client = pymongo.MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
+
 # Home page
 @app.route('/')
 def home():
     all_hawker = db.hawkerCentres.find()
-    return render_template('home.template.html', all_hawker=all_hawker, errors={})
+    return render_template('home.template.html',
+                           all_hawker=all_hawker, errors={})
+
 
 # Process form for hawker centre search
 @app.route('/', methods=["POST"])
@@ -32,10 +35,12 @@ def process_search_hawker():
         errors['hawker_centre'] = "Please select a hawker centre"
 
     if len(errors) == 0:
-        return redirect(url_for('show_stalls_in_hawker', hawker_centre=hawker_centre))
+        return redirect(url_for('show_stalls_in_hawker',
+                                hawker_centre=hawker_centre))
     else:
         all_hawker = db.hawkerCentres.find()
-        return render_template('home.template.html', all_hawker=all_hawker, errors=errors)
+        return render_template('home.template.html',
+                               all_hawker=all_hawker, errors=errors)
 
 
 # Display stalls in selected hawker centre
@@ -59,6 +64,8 @@ def show_create_stall():
     return render_template('create_stall.template.html', all_hawker=all_hawker)
 
 # Process form to create stall
+
+
 @app.route('/stall/create', methods=["POST"])
 def process_create_stall():
     stall_name = request.form.get('stall_name')
@@ -90,8 +97,9 @@ def filter_stall():
         criteria_stall['stall_name'] = {'$regex': find_stall, '$options': 'i'}
 
     if find_specialty:
-        criteria_stall['specialty'] = {'$regex': find_specialty, '$options': 'i'}
-    
+        criteria_stall['specialty'] = {
+            '$regex': find_specialty, '$options': 'i'}
+
     display_stall = db.foodStalls.find(criteria_stall, {
         'stall_name': 1,
         'hawker_centre': 1,
@@ -109,29 +117,31 @@ def show_stall_info(stall_id, stall_name, hawker_centre):
     stall_to_display = db.foodStalls.find({
         '_id': reviewed_stall_id
     }, {
-        'stall_name':1,
-        'hawker_centre':1,
-        'specialty':1,
-        'unit_no':1,
-        'opening_hours':1
+        'stall_name': 1,
+        'hawker_centre': 1,
+        'specialty': 1,
+        'unit_no': 1,
+        'opening_hours': 1
     })
 
     hawker_to_display = db.hawkerCentres.find({
         'name': hawker_centre
     }, {
-        'address':1
+        'address': 1
     })
 
     stall_reviews = db.stallReviews.find({
         'reviewed_stall_id': reviewed_stall_id
     }, {
-        'user_name':1,
-        'comment':1
+        'user_name': 1,
+        'comment': 1
     })
 
     return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, stall_reviews=stall_reviews, stall_to_display=stall_to_display, hawker_to_display=hawker_to_display)
 
 # Process form to create review
+
+
 @app.route('/stall/<stall_id>/<stall_name>/<hawker_centre>/display', methods=["POST"])
 def process_create_review(stall_id, stall_name, hawker_centre):
     user_name = request.form.get('user_name')
@@ -161,6 +171,8 @@ def show_update_stall(stall_id):
                            stall=stall)
 
 # Process to update stall
+
+
 @app.route('/stall/<stall_id>/update', methods=["POST"])
 def process_update_stall(stall_id):
     db.foodStalls.update_one({
@@ -170,7 +182,6 @@ def process_update_stall(stall_id):
     })
     flash("Stall info has been updated!")
     return redirect(url_for('home'))
-
 
 
 # Delete stall
@@ -183,6 +194,8 @@ def delete_stall(stall_id):
     return render_template('confirm_delete_stall.template.html', stall=stall)
 
 # Process to delete stall
+
+
 @app.route('/stall/<stall_id>/delete', methods=['POST'])
 def process_delete_stall(stall_id):
 
@@ -203,6 +216,8 @@ def show_update_review(review_id):
                            review=review)
 
 # Process to update review
+
+
 @app.route('/review/<review_id>/update', methods=["POST"])
 def process_update_review(review_id):
     db.stallReviews.update_one({
@@ -224,6 +239,8 @@ def delete_review(review_id):
     return render_template('confirm_delete_review.template.html', review=review)
 
 # Process to delete review
+
+
 @app.route('/review/<review_id>/delete', methods=['POST'])
 def process_delete_review(review_id):
 
@@ -232,10 +249,6 @@ def process_delete_review(review_id):
     })
     flash("Review has been deleted!")
     return redirect(url_for('show_all_stalls'))
-
-
-
-
 
 
 if __name__ == '__main__':
