@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = b'#$%^&ABC123'
 
 MONGO_URI = os.environ.get('MONGO_URI')
 DB_NAME = 'thr_db'
@@ -64,7 +65,7 @@ def process_create_stall():
         "unit_no": unit_no,
         "opening_hours": opening_hours
     })
-
+    flash("New stall has been created!")
     return redirect(url_for('show_create_stall'))
 
 
