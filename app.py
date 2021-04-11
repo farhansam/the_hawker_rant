@@ -157,7 +157,7 @@ def show_stall_info(stall_id, stall_name, hawker_centre):
         'comment': 1
     })
 
-    return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, stall_reviews=stall_reviews, stall_to_display=stall_to_display, hawker_to_display=hawker_to_display)
+    return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, stall_reviews=stall_reviews, stall_to_display=stall_to_display, hawker_to_display=hawker_to_display, errors={}, old_values={})
 
 # Process form to create review
 
@@ -169,14 +169,49 @@ def process_create_review(stall_id, stall_name, hawker_centre):
     reviewed_stall_name = stall_name
     reviewed_stall_id = ObjectId(stall_id)
 
-    db.stallReviews.insert_one({
-        "user_name": user_name,
-        "comment": comment,
-        "reviewed_stall_name": stall_name,
-        "reviewed_stall_id": reviewed_stall_id
-    })
-    flash("New review created!")
-    return redirect(url_for('show_stall_info', stall_id=stall_id, stall_name=stall_name, hawker_centre=hawker_centre))
+    errors = {}
+    if user_name == "":
+        errors['user_name'] = "Enter a username"
+
+    if comment == "":
+        errors['comment'] = "Enter your comments"
+
+    if len(errors) == 0:
+        db.stallReviews.insert_one({
+            "user_name": user_name,
+            "comment": comment,
+            "reviewed_stall_name": stall_name,
+            "reviewed_stall_id": reviewed_stall_id
+        })
+        flash("New review created!")
+        return redirect(url_for('show_stall_info', stall_id=stall_id, stall_name=stall_name, hawker_centre=hawker_centre))
+    else:
+        reviewed_stall_id = ObjectId(stall_id)
+
+        stall_to_display = db.foodStalls.find({
+            '_id': reviewed_stall_id
+        }, {
+            'stall_name': 1,
+            'hawker_centre': 1,
+            'specialty': 1,
+            'unit_no': 1,
+            'opening_hours': 1
+        })
+
+        hawker_to_display = db.hawkerCentres.find({
+            'name': hawker_centre
+        }, {
+            'address': 1
+        })
+
+        stall_reviews = db.stallReviews.find({
+            'reviewed_stall_id': reviewed_stall_id
+        }, {
+            'user_name': 1,
+            'comment': 1
+        })
+
+        return render_template('display.template.html', stall_id=stall_id, stall_name=stall_name, stall_reviews=stall_reviews, stall_to_display=stall_to_display, hawker_to_display=hawker_to_display, errors=errors, old_values=request.form)
 
 
 # Update stall
@@ -231,7 +266,7 @@ def process_update_stall(stall_id):
             '_id': ObjectId(stall_id)
         })
         return render_template('show_update_stall.template.html', all_hawker=all_hawker,
-                           stall=stall, errors=errors, old_values=old_values)
+                               stall=stall, errors=errors, old_values=old_values)
 
 
 # Delete stall
@@ -276,7 +311,7 @@ def process_update_review(review_id):
         '$set': request.form
     })
     flash("Review has been updated!")
-    return redirect(url_for('show_all_stalls'))
+    return redirect(url_for('home'))
 
 
 # Delete review
@@ -298,7 +333,7 @@ def process_delete_review(review_id):
         '_id': ObjectId(review_id)
     })
     flash("Review has been deleted!")
-    return redirect(url_for('show_all_stalls'))
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':

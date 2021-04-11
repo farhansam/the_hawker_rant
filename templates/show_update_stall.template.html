@@ -17,18 +17,23 @@ Create Stall Data
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Hawker Centre</label>
                     <div class="col-sm-9">
-                        <select class="form-select" aria-label="Default select example" name="hawker_centre">
+                        <select class="form-select {% if errors.hawker_centre %} is-invalid {%endif%}" aria-label="Default select example" name="hawker_centre">
                             <option></option>
                             {%for hawker in all_hawker %}
-                            <option value="{{hawker.name}}">{{hawker.name}}</option>
+                            <option value="{{hawker.name}}" {% if hawker.name == stall.hawker_centre %} selected {%endif%}>{{hawker.name}}</option>
                             {%endfor%}
                         </select>
+                        {% if errors.hawker_centre %}
+                        <div class="invalid-feedback">
+                            {{errors.hawker_centre}}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Stall Name</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control {% if errors.stall_name %} is-invalid {%endif%}" name="stall_name" value="{{old_values.stall_name}}">
+                        <input type="text" class="form-control {% if errors.stall_name %} is-invalid {%endif%}" name="stall_name" value="{% if old_values.stall_name %}{{old_values.stall_name}}{% else %}{{stall.stall_name}}{%endif%}">
                         {% if errors.stall_name %}
                         <div class="invalid-feedback">
                             {{errors.stall_name}}
@@ -39,7 +44,7 @@ Create Stall Data
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Specialty Dish</label>
                     <div class="col-sm-9">
-                        <input class="form-control {% if errors.specialty %} is-invalid {%endif%}" list="dishOptions" name="specialty" value="{{old_values.specialty}}">
+                        <input class="form-control {% if errors.specialty %} is-invalid {%endif%}" list="dishOptions" name="specialty" value="{% if old_values.specialty %}{{old_values.specialty}}{% else %}{{stall.specialty}}{%endif%}">
                         <datalist id="dishOptions">
                             <option value="carrot cake">
                             <option value="char kway teow">
@@ -67,7 +72,7 @@ Create Stall Data
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Unit No.</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control {% if errors.unit_no %} is-invalid {%endif%}" name="unit_no" value="{{old_values.unit_no}}">
+                        <input type="text" class="form-control {% if errors.unit_no %} is-invalid {%endif%}" name="unit_no" value="{% if old_values.unit_no %}{{old_values.unit_no}}{% else %}{{stall.unit_no}}{%endif%}">
                         {% if errors.unit_no %}
                         <div class="invalid-feedback">
                             {{errors.unit_no}}
@@ -78,7 +83,7 @@ Create Stall Data
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Opening Hours</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control {% if errors.opening_hours %} is-invalid {%endif%}" name="opening_hours" value="{{old_values.opening_hours}}">
+                        <input type="text" class="form-control {% if errors.opening_hours %} is-invalid {%endif%}" name="opening_hours" value="{% if old_values.opening_hours %}{{old_values.opening_hours}}{% else %}{{stall.opening_hours}}{%endif%}">
                         {% if errors.opening_hours %}
                         <div class="invalid-feedback">
                             {{errors.opening_hours}}
