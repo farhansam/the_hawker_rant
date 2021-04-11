@@ -17,6 +17,10 @@
     margin-bottom: 1em;
 }
 
+.margin-custom-div {
+    margin-bottom: 3em;
+}
+
 .card-image{
     width: auto;
 }
