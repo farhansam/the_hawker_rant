@@ -7,7 +7,7 @@
     </div>
     <div>
         <input type="submit" value="Delete" class="btn btn-danger"/>
-        <a href="{{url_for('home')}}" class="btn btn-success">No, don't delete</a>
+        <a href="{{url_for('show_stall_info', stall_id=stall._id, stall_name=stall.stall_name, hawker_centre=stall.hawker_centre)}}" class="btn btn-success">No, don't delete</a>
     </div>
 
 

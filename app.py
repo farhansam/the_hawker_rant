@@ -45,7 +45,7 @@ def process_search_hawker():
                                errors=errors)
 
 
-# Display stalls in selected hawker centre
+# Return results for hawker centre search
 @app.route('/stalls/<hawker_centre>')
 def show_stalls_in_hawker(hawker_centre):
     stalls = db.foodStalls.find({
@@ -57,6 +57,30 @@ def show_stalls_in_hawker(hawker_centre):
     })
     return render_template('stalls_by_hawker.template.html',
                            stalls=stalls)
+
+
+# Search by preference
+@app.route('/stall/results')
+def filter_stall():
+    find_stall = str(request.args.get('find_stall'))
+    find_specialty = str(request.args.get('find_specialty'))
+
+    criteria_stall = {}
+
+    if find_stall:
+        criteria_stall['stall_name'] = {'$regex': find_stall, '$options': 'i'}
+
+    if find_specialty:
+        criteria_stall['specialty'] = {
+            '$regex': find_specialty, '$options': 'i'}
+
+    display_stall = db.foodStalls.find(criteria_stall, {
+        'stall_name': 1,
+        'hawker_centre': 1,
+        'specialty': 1
+    })
+    return render_template('results.template.html',
+                           display_stall=display_stall)
 
 
 # Create stall
@@ -111,30 +135,6 @@ def process_create_stall():
                                all_hawker=all_hawker,
                                errors=errors,
                                old_values=request.form)
-
-
-# Filter stalls
-@app.route('/stall/results')
-def filter_stall():
-    find_stall = str(request.args.get('find_stall'))
-    find_specialty = str(request.args.get('find_specialty'))
-
-    criteria_stall = {}
-
-    if find_stall:
-        criteria_stall['stall_name'] = {'$regex': find_stall, '$options': 'i'}
-
-    if find_specialty:
-        criteria_stall['specialty'] = {
-            '$regex': find_specialty, '$options': 'i'}
-
-    display_stall = db.foodStalls.find(criteria_stall, {
-        'stall_name': 1,
-        'hawker_centre': 1,
-        'specialty': 1
-    })
-    return render_template('results.template.html',
-                           display_stall=display_stall)
 
 
 # Display stall information and show form to create review
@@ -284,7 +284,10 @@ def process_update_stall(stall_id):
             '$set': request.form
         })
         flash("Stall info has been updated!")
-        return redirect(url_for('home'))
+        return redirect(url_for('show_stall_info',
+                                stall_id=stall_id,
+                                stall_name=stall_name,
+                                hawker_centre=hawker_centre))
     else:
         all_hawker = db.hawkerCentres.find()
         old_values = {**request.form}
@@ -312,11 +315,20 @@ def delete_stall(stall_id):
 @app.route('/stall/<stall_id>/delete', methods=['POST'])
 def process_delete_stall(stall_id):
 
+    stall = db.foodStalls.find_one({
+        '_id': ObjectId(stall_id)
+    })
+    stall_name = stall['stall_name']
+    hawker_centre = stall['hawker_centre']
+
     db.foodStalls.remove({
         '_id': ObjectId(stall_id)
     })
     flash("Stall has been deleted!")
-    return redirect(url_for('home'))
+    return redirect(url_for('show_stall_info',
+                            stall_id=stall_id,
+                            stall_name=stall_name,
+                            hawker_centre=hawker_centre))
 
 
 # Update review
@@ -369,19 +381,39 @@ def delete_review(review_id):
     review = db.stallReviews.find_one({
         '_id': ObjectId(review_id)
     })
+    stall_id = review['reviewed_stall_id']
+
+    stall = db.foodStalls.find_one({
+        '_id': ObjectId(stall_id)
+    })
     return render_template('confirm_delete_review.template.html',
-                           review=review)
+                           review=review,
+                           stall=stall)
 
 
 # Process to delete review
 @app.route('/review/<review_id>/delete', methods=['POST'])
 def process_delete_review(review_id):
 
+    review = db.stallReviews.find_one({
+        '_id': ObjectId(review_id)
+    })
+    stall_id = review['reviewed_stall_id']
+
+    stall = db.foodStalls.find_one({
+        '_id': ObjectId(stall_id)
+    })
+    stall_name = stall['stall_name']
+    hawker_centre = stall['hawker_centre']
+
     db.stallReviews.remove({
         '_id': ObjectId(review_id)
     })
     flash("Review has been deleted!")
-    return redirect(url_for('home'))
+    return redirect(url_for('show_stall_info',
+                            stall_id=stall_id,
+                            stall_name=stall_name,
+                            hawker_centre=hawker_centre))
 
 
 if __name__ == '__main__':
