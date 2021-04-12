@@ -142,17 +142,19 @@ Screenshot of actual webpages:
 
 ## Bug Testing
 ### HTML
-All HTML pages passed through W3C Nu HTML. Errors were rectified.
+   HTML files were passed through W3C Nu HTML. Major errors were rectified.
+   ![](static/images/thr_html_check.png)
     
-
 ### CSS
-   CSS file passed through Jigsaw CSS. Errors were rectified.
+   CSS file was passed through Jigsaw CSS. No errors found.
+   ![](static/images/thr_css_check.png)
    
-
+### PEP8
+   Python file was passed through PEP8 online checker. No errors found.
+   ![](static/images/thr_pep8_check.png)
 
 
 # 9. Deployment
-The website was deployed through Github pages.
 * Link to published website: ()
 * Link to source code: ()
 

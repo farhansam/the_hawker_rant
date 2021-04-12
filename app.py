@@ -308,7 +308,7 @@ def process_update_stall(stall_id):
 
     if opening_hours == "":
         errors['opening_hours'] = "Opening hours cannot be blank"
-        
+
     if image_url == "":
         errors['image_url'] = "Image URL cannot be blank"
 
