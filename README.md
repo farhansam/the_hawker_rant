@@ -126,18 +126,19 @@ Screenshot of actual webpages:
 
 ## Test Table
 
-<!-- | Test Type | Test | Result | Error Fix |
+| Test Type | Test | Result | Error Fix |
 |:---------:|:-------------:|:-------------:|:-------------:|
 | Functionality | Test navbar links among all pages | All links work | NA |
-| Functionality | Test links on cards in main page | All links work | NA |
-| Functionality | Test API endpoints | Endpoints work as expected | NA |
-| Usability | Test API endpoints that may not exist in API database, ie; local Singaporean dishes | Endpoint does not exist. No data retrieved. | Display alert message in UI. If endpoint does not exist, alert message will pop up, informing user that the dish is not found in the "library" |
-| Functionality | Test appended table in calorie counter page | Table row appended from the top instead of the bottom | Targeted wrong DOM tree in JS. Rectified by specifying ID |
-| Usability | Test BMI & recommended calorie intake formula. Counter checked with physical calculator. | Returns different number from physical calculator | Syntax error in code. Rectified by correcting the syntax |
-| Usability | Test user input validation by entering unwanted characters and numbers in input field | Input field accepted unwanted characters and numbers | Accepted characters for input field was not defined in JS file. Rectified by defining the wanted/unwanted characters for each input field |
-| Responsiveness | Test responsiveness of navbar collapse using Google Chrome inspect element | Navbar able to collapse in small screen and expand when the collapse button is clicked | NA |
-| Responsiveness | Test responsiveness of images and columns using Google Chrome inspect element | Images are resized and columns are restacked | NA | -->
-
+| Functionality | Test links on buttons in all pages | Some links do not work | Some render_template or redirect actions do not work due to missing parameters. Troubleshoot and rectified by ensuring correct parameters are passed where needed.|
+| Data Management | Test query from MongoDB | Some queries do not work as expected due to wrong syntax | Rectified by correcting syntax |
+| Functionality | Test submit/search/update/delete of forms | Form submission do not work at times due to wrong methods used | Use POST or GET wherever appropriate |
+| Usability | Test search engine whether string input matches value in database | Search engine works with minimal issues | NA |
+| Usability | Test user input validation by entering invalid condition in input field | Input field managed to prompt error message | NA |
+| Usability | Test whether previous value entered into input field can be retained if form submission fail | Some old values were unable to be retrieved | Rectified by correcting syntax |
+| Responsiveness | Test responsiveness of button locations when browser is resized using Google Chrome inspect element | Buttons are able to relocate at location that is user-friendly | NA |
+| Responsiveness | Test responsiveness of images and columns using Google Chrome inspect element | Images are resized and columns are restacked | NA |
+| Data Management | Test whether data is able to be transferred to database when form is submitted  | Data transfer successful | NA |
+| Data Management | Checked that key-value pairs are consistent within respective collection | NA | NA |
 
 ## Bug Testing
 ### HTML
