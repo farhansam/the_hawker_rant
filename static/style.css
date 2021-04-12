@@ -39,3 +39,7 @@ body {
     color: purple;
 }
 
+.image-size {
+    max-height: 400px;
+}
+
