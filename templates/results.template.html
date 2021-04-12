@@ -15,14 +15,25 @@ The Hawker Rant
                 <div class="row mb-3">
                     <label class="col-lg-4 col-form-label">Stall Name</label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" name="find_stall">
+                        <input type="text" class="form-control {% if errors.find_stall%} is-invalid {%endif%}"
+                            name="find_stall">
+                        {% if errors.find_stall %}
+                        <div class="invalid-feedback">
+                            {{errors.find_stall}}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <h5>OR</h5>
                 <div class="row mb-3">
                     <label class="col-lg-4 col-form-label">Specialty Dish</label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" name="find_specialty">
+                        <input type="text" class="form-control {% if errors.find_specialty%} is-invalid {%endif%}" name="find_specialty">
+                        {% if errors.find_specialty %}
+                        <div class="invalid-feedback">
+                            {{errors.find_specialty}}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -42,7 +53,8 @@ The Hawker Rant
                     <div class="card-body">
                         <h5 class="card-title">{{stall.stall_name}}</h5>
                         <p class="card-text mb-3">{{stall.hawker_centre}}</p>
-                        <p class="card-text mt-3 mb-1"><small class="text-muted">Best known for {{stall.specialty}}</small></p>
+                        <p class="card-text mt-3 mb-1"><small class="text-muted">Best known for
+                                {{stall.specialty}}</small></p>
                         <a href="{{url_for('show_stall_info', stall_id=stall._id)}}" class="btn btn-primary">View</a>
                     </div>
                 </div>

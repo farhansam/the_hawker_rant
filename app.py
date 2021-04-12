@@ -66,23 +66,34 @@ def filter_stall():
     find_stall = str(request.args.get('find_stall'))
     find_specialty = str(request.args.get('find_specialty'))
 
-    criteria_stall = {}
+    errors = {}
+    if find_stall == "" and find_specialty == "":
+        errors['find_stall'] = "Enter a keyword"
+        errors['find_specialty'] = "Enter a keyword"
 
-    if find_stall:
-        criteria_stall['stall_name'] = {'$regex': find_stall, '$options': 'i'}
+    if len(errors) == 0:
+        criteria_stall = {}
 
-    if find_specialty:
-        criteria_stall['specialty'] = {
-            '$regex': find_specialty, '$options': 'i'}
+        if find_stall:
+            criteria_stall['stall_name'] = {
+                '$regex': find_stall, '$options': 'i'}
 
-    display_stall = db.foodStalls.find(criteria_stall, {
-        'stall_name': 1,
-        'hawker_centre': 1,
-        'specialty': 1,
-        'image_url': 1
-    })
-    return render_template('results.template.html',
-                           display_stall=display_stall)
+        if find_specialty:
+            criteria_stall['specialty'] = {
+                '$regex': find_specialty, '$options': 'i'}
+
+        display_stall = db.foodStalls.find(criteria_stall, {
+            'stall_name': 1,
+            'hawker_centre': 1,
+            'specialty': 1,
+            'image_url': 1
+        })
+        return render_template('results.template.html',
+                               display_stall=display_stall,
+                               errors=errors)
+    else:
+        return render_template('results.template.html',
+                               errors=errors)
 
 
 # Create stall
@@ -188,8 +199,8 @@ def process_create_review(stall_id):
     reviewed_stall_id = ObjectId(stall_id)
 
     stall = db.foodStalls.find_one({
-            '_id': reviewed_stall_id
-        })
+        '_id': reviewed_stall_id
+    })
 
     stall_name = stall['stall_name']
 
