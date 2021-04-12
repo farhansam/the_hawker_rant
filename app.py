@@ -53,7 +53,8 @@ def show_stalls_in_hawker(hawker_centre):
     }, {
         'stall_name': 1,
         'hawker_centre': 1,
-        'specialty': 1
+        'specialty': 1,
+        'image_url': 1
     })
     return render_template('stalls_by_hawker.template.html',
                            stalls=stalls)
@@ -77,7 +78,8 @@ def filter_stall():
     display_stall = db.foodStalls.find(criteria_stall, {
         'stall_name': 1,
         'hawker_centre': 1,
-        'specialty': 1
+        'specialty': 1,
+        'image_url': 1
     })
     return render_template('results.template.html',
                            display_stall=display_stall)
