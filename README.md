@@ -26,9 +26,10 @@ is mentioned in the media or on social media. To close this gap, The Hawker-rant
 information on these hawker stalls are readily available. Users of this website are able to find information on these
 stalls and they can give their honest reviews, to allow others to gauge the popularity and quality of these stalls.
 
-
 # 2. Objectives
 * To complete Milestone Project 3 - Python and Data Centric Development
+* To build a data centric website that allows user to create, read, update and delete information, which will in turn be useful to other users
+* To provide a platform that hosts useful information for the intended audience
 
 # 3. Demo
 View the end product: [The Hawker-rant]()
