@@ -169,6 +169,7 @@ def show_stall_info(stall_id):
         'user_name': 1,
         'comment': 1
     })
+
     return render_template('display.template.html',
                            stall_id=stall_id,
                            stall_reviews=stall_reviews,
@@ -360,12 +361,6 @@ def process_update_review(review_id):
         })
         stall_id = review['reviewed_stall_id']
 
-        stall = db.foodStalls.find_one({
-            '_id': ObjectId(stall_id)
-        })
-        stall_name = stall['stall_name']
-        hawker_centre = stall['hawker_centre']
-
         db.stallReviews.update_one({
             "_id": ObjectId(review_id)
         }, {
@@ -409,12 +404,6 @@ def process_delete_review(review_id):
         '_id': ObjectId(review_id)
     })
     stall_id = review['reviewed_stall_id']
-
-    stall = db.foodStalls.find_one({
-        '_id': ObjectId(stall_id)
-    })
-    stall_name = stall['stall_name']
-    hawker_centre = stall['hawker_centre']
 
     db.stallReviews.remove({
         '_id': ObjectId(review_id)
