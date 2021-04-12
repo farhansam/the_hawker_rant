@@ -93,6 +93,17 @@ Create Stall Data
                         {% endif %}
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Image URL</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control {% if errors.image_url %} is-invalid {%endif%}" name="image_url" value="{{old_values.image_url}}">
+                        {% if errors.image_url %}
+                        <div class="invalid-feedback">
+                            {{errors.image_url}}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
 
                 <input type="submit" class="btn btn-primary" value="Create" />
             </form>

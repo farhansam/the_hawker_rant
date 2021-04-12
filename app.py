@@ -119,6 +119,7 @@ def process_create_stall():
     specialty = request.form.get('specialty')
     unit_no = request.form.get('unit_no')
     opening_hours = request.form.get('opening_hours')
+    image_url = request.form.get('image_url')
 
     errors = {}
     if stall_name == "":
@@ -136,13 +137,17 @@ def process_create_stall():
     if opening_hours == "":
         errors['opening_hours'] = "Opening hours cannot be blank"
 
+    if image_url == "":
+        errors['image_url'] = "Image URL cannot be blank"
+
     if len(errors) == 0:
         db.foodStalls.insert_one({
             "stall_name": stall_name,
             "hawker_centre": hawker_centre,
             "specialty": specialty,
             "unit_no": unit_no,
-            "opening_hours": opening_hours
+            "opening_hours": opening_hours,
+            "image_url": image_url
         })
         flash("New stall has been created!")
         return redirect(url_for('show_create_stall'))
@@ -286,6 +291,7 @@ def process_update_stall(stall_id):
     specialty = request.form.get('specialty')
     unit_no = request.form.get('unit_no')
     opening_hours = request.form.get('opening_hours')
+    image_url = request.form.get('image_url')
 
     errors = {}
     if stall_name == "":
@@ -302,6 +308,9 @@ def process_update_stall(stall_id):
 
     if opening_hours == "":
         errors['opening_hours'] = "Opening hours cannot be blank"
+        
+    if image_url == "":
+        errors['image_url'] = "Image URL cannot be blank"
 
     if len(errors) == 0:
         db.foodStalls.update_one({
