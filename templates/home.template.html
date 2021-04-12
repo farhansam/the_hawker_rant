@@ -29,7 +29,7 @@ The Hawker-rant
                             <select
                                 class="form-select main-search-bar {% if errors.hawker_centre %} is-invalid {%endif%}"
                                 aria-label="Default select example" name="hawker_centre_search">
-                                <option> </option>
+                                <option></option>
                                 {%for hawker in all_hawker %}
                                 <option value="{{hawker.name}}">{{hawker.name}}</option>
                                 {%endfor%}
