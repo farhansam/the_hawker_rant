@@ -44,6 +44,7 @@ View the end product: [The Hawker-rant](https://farhan-thehawkerrant.herokuapp.c
 * Cloudinary for hosting images
 * FreeLogoDesign for logo generation
 * MockFlow for wireframes
+* MS Powerpoint for wireframes
 * Github for version control
 * Heroku for deployment
 
@@ -155,17 +156,24 @@ Screenshot of actual webpages:
 
 
 # 9. Deployment
-* Link to published website: ()
-* Link to source code: ()
+* Link to published website: (https://farhan-thehawkerrant.herokuapp.com/)
+* Link to source code: (https://github.com/farhansam/the_hawker_rant)
+
+Github was used for version control, whereas Heroku was used for deployment.
+The deployed pages' functionality, usability, responsiveness and data management were tested 
+against the development version and both were found to match.
+
+eg. of Development version vs Deployed version
+![](static/images/thr_development.png)
+![](static/images/thr_deployed.png)
 
 # 10. Acknowledgement
 * Trent Global College for providing the platform for learning.
 * Code Institute for their TAs, namely:
   * Paul Chor
   * Ace
- 
 * [Stackoverflow](https://stackoverflow.com/) for coding tips
 * [DanielFoodDiary](https://danielfooddiary.com/) for hawker stall information
-* [Canva](https://www.canva.com/) for images used in the website.
+* [FreeLogoDesign](https://www.freelogodesign.org/) for logo generation
 * [Bootstrap](https://getbootstrap.com/) for HTML and CSS templates.
 * [w3schools](https://www.w3schools.com/) for basic HTML/CSS/Javascript/Jquery syntax references.
