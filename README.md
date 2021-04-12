@@ -22,7 +22,7 @@ In Singapore, we have the luxury of enjoying a variety of different cuisines tha
 cultures and races. All these food can easily be found in hawker centres that house multiple stalls at one location. 
 However, the information on some of these stalls, for example, location, opening hours, specialty, etc are not always
 readily available on the web. Even if they are, the quality and deliciousness of the food are a mystery, unless it 
-is mentioned in the media or on social media. To close this gap, The Hawker-rant provides a platform on which key 
+is mentioned in the media or on social media. To close this gap, The Hawker-rant provides a platform on which database-stored 
 information on these hawker stalls are readily available. Users of this website are able to find information on these
 stalls and they can give their honest reviews, to allow others to gauge the popularity and quality of these stalls.
 
@@ -48,7 +48,15 @@ View the end product: [The Hawker-rant](https://farhan-thehawkerrant.herokuapp.c
 * Heroku for deployment
 
 # 5. User Stories
+The target audience for the website are food-lovers and people who just need information or opinion on hawker food. Some of the user stories are:
 
+1. I want to search for a particular hawker stall
+2. I want to know what are the stalls available in a particular hawker centre
+3. I want to search for a hawker stall based on my preference
+4. I want to find out more information on a hawker stall
+5. I want to create new stall, update and delete existing stall
+6. I want to see reviews on the hawker stalls
+7. I want to add a review, edit and delete existing reviews
 
 # 6. Development
 Wireframe for respective webpages:
@@ -101,7 +109,7 @@ The website was deployed through Github pages.
   * Ace
  
 * [Stackoverflow](https://stackoverflow.com/) for coding tips
-* 
+* [DanielFoodDiary](https://danielfooddiary.com/) for hawker stall information
 * [Canva](https://www.canva.com/) for images used in the website.
 * [Bootstrap](https://getbootstrap.com/) for HTML and CSS templates.
 * [w3schools](https://www.w3schools.com/) for basic HTML/CSS/Javascript/Jquery syntax references.
