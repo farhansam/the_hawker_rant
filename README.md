@@ -16,6 +16,15 @@
 10. Acknowledgement
 
 # 1. Background
+For many people, food is something we need to survive. For some, however, food is something they love
+and they are always in search of good food that are affordable and recommended by many.
+In Singapore, we have the luxury of enjoying a variety of different cuisines that are made by people of different
+cultures and races. All these food can easily be found in hawker centres that house multiple stalls at one location. 
+However, the information on some of these stalls, for example, location, opening hours, specialty, etc are not always
+readily available on the web. Even if they are, the quality and deliciousness of the food are a mystery, unless it 
+is mentioned in the media or on social media. To close this gap, The Hawker-rant provides a platform on which key 
+information on these hawker stalls are readily available. Users of this website are able to find information on these
+stalls and they can give their honest reviews, to allow others to gauge the popularity and quality of these stalls.
 
 
 # 2. Objectives
