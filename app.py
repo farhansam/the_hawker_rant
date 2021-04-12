@@ -71,6 +71,10 @@ def filter_stall():
         errors['find_stall'] = "Enter a keyword"
         errors['find_specialty'] = "Enter a keyword"
 
+    if request.args.get('find_stall') and request.args.get('find_specialty'):
+        errors['find_stall'] = "Search by one parameter only"
+        errors['find_specialty'] = "Search by one parameter only"
+
     if len(errors) == 0:
         criteria_stall = {}
 
