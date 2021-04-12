@@ -61,8 +61,17 @@ The target audience for the website are food-lovers and people who just need inf
 # 6. Development
 Wireframe for respective webpages:
 
+1. Home page
+![](static/images/thr_home.png)
 
+2. Search results
+![](static/images/thr_results.png)
 
+3. Display page
+![](static/images/thr_display.png)
+
+Wireframe for Website Structure
+![](static/images/website_structure.png)
 
 # 7. Implementation
 Screenshot of actual webpages:
