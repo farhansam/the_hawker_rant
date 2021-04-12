@@ -29,7 +29,7 @@ The Hawker-rant
                             <select
                                 class="form-select main-search-bar {% if errors.hawker_centre %} is-invalid {%endif%}"
                                 aria-label="Default select example" name="hawker_centre_search">
-                                <option></option>
+                                <option> </option>
                                 {%for hawker in all_hawker %}
                                 <option value="{{hawker.name}}">{{hawker.name}}</option>
                                 {%endfor%}
@@ -53,7 +53,7 @@ The Hawker-rant
                         <h4 class="text-start"><b>Or search by preference</b></h4>
                     </div>
                     <div class="col-sm-6 d-flex align-self-start">
-                        <a href="{{url_for('filter_stall')}}"><button class="btn btn-primary text-left">Go</button></a>
+                        <a href="{{url_for('filter_stall')}}" class="btn btn-primary text-left">Go</a>
                     </div>
                 </div>
             </div>
