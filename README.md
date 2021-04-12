@@ -32,16 +32,20 @@ stalls and they can give their honest reviews, to allow others to gauge the popu
 * To provide a platform that hosts useful information for the intended audience
 
 # 3. Demo
-View the end product: [The Hawker-rant]()
+View the end product: [The Hawker-rant](https://farhan-thehawkerrant.herokuapp.com/)
 
 # 4. Adopted Technology
-* HTML/CSS
-* Bootstrap v4.1.x
-* Javascript/jquery
-* Postman & RapidAPI (for APIs)
-* Stackoverflow
-* Canva
-* Github
+* HTML/CSS for UI/UX
+* Bootstrap v5.0.x for responsiveness
+* Python/flask for web framework
+* MongoDB for NoSQL database
+* Stackoverflow for coding tips
+* Canva for image edits
+* Cloudinary for hosting images
+* FreeLogoDesign for logo generation
+* MockFlow for wireframes
+* Github for version control
+* Heroku for deployment
 
 # 5. User Stories
 
