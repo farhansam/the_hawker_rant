@@ -48,7 +48,8 @@ View the end product: [The Hawker-rant](https://farhan-thehawkerrant.herokuapp.c
 * Heroku for deployment
 
 # 5. User Stories
-The target audience for the website are food-lovers and people who just need information or opinion on hawker food. Some of the user stories are:
+The target audience for the website are food-lovers and people who just need information or opinion on hawker food. 
+Some of the user stories are:
 
 1. I want to search for a particular hawker stall
 2. I want to know what are the stalls available in a particular hawker centre
@@ -76,6 +77,49 @@ Wireframe for Website Structure
 # 7. Implementation
 Screenshot of actual webpages:
 
+1. Home page
+   <br>
+   The home page serves to be the central page that connects to all other pages.
+   It also serves to answer to the following user stories:
+   ```
+    2. I want to know what are the stalls available in a particular hawker centre
+    ```
+   ![](static/images/actual_home.png)
+
+2. Create stall page
+   <br>
+   This page serves to answer to the following user stories:
+   ```
+    5. I want to create new stall
+    ```
+   ![](static/images/actual_create.png)
+
+3. Results page
+   <br>
+   This page serves to answer to following user stories:
+   ```
+    1. I want to search for a particular hawker stall
+    3. I want to search for a hawker stall based on my preference
+    4. I want to find out more information on a hawker stall
+    ```
+   ![](static/images/actual_results.png)
+   <br>
+    The "view" button allows the user to be redirected to the display page which will contain more information 
+    regarding the stall
+
+4. Display page
+    <br>
+   This page serves to answer to following user stories:
+   ```
+    4. I want to find out more information on a hawker stall
+    5. I want to create new stall, update and delete existing stall
+    6. I want to see reviews on the hawker stalls
+    7. I want to add a review, edit and delete existing reviews
+    ```
+   ![](static/images/actual_display.png)
+   <br>
+   The display page links the user to many other user action such as to edit and delete stall as well as
+   to add, edit and delete review.
 
 
 # 8. Testing
